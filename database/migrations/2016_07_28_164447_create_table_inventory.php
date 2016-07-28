@@ -24,6 +24,9 @@ class CreateTableInventory extends Migration
             $table->boolean('bool_is_consigned');
             $table->integer('int_user_id_fk')
                 ->unsigned();
+            $table->integer('int_sales_invoice_detail_id_fk')
+                ->unsigned()
+                ->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -38,6 +41,10 @@ class CreateTableInventory extends Migration
             $table->foreign('int_user_id_fk')
                 ->references('id')
                 ->on('users');
+
+            $table->foreign('int_sales_invoice_detail_id_fk')
+                ->references('int_sales_invoice_detail_id')
+                ->on('sales_invoice_details');
 
         });
     }
