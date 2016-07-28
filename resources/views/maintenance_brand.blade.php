@@ -10,7 +10,7 @@
     <div ng-controller="ctrl.brand">
         <div class="row">
             <div class="col-md-4">
-                <form ng-submit="">
+                <form ng-submit="saveBrand()">
                     <div class="form-group">
                         <label for="product_brand">Brand</label>
                         <input ng-model="newBrand.str_brand_name" type="text" class="form-control" id="product_brand" placeholder="Product Brand">
@@ -33,13 +33,13 @@
                     </thead>
 
                     <tbody>
-                        <tr>
+                        <tr ng-repeat="brand in brands">
                             <td><img src="img/logo1.png" alt="" class="img-circle" height="60" width="60"></td>
-                            <td><p>White Wolves</p></td>
+                            <td><p>@{{ brand.str_brand_name }}</p></td>
                             <td>
-                                <a><button ng-click="getBrand(brand, index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
+                                <a><button ng-click="getBrand(brand, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
                                         <i class="glyphicon glyphicon-trash"></i>Update</button></a>
-                                <a><button type="button" class="btn btn-danger">
+                                <a><button ng-click="deleteBrand(brand, $index)" type="button" class="btn btn-danger">
                                         <i class="glyphicon glyphicon-trash"></i>Delete</button></a>
                             </td>
                         </tr>

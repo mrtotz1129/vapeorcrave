@@ -5,7 +5,7 @@ angular.module('app')
 
         var vm              =   $scope;
 
-        var Brands          =   $resource(appSettings+'v1/brands', {}, {
+        var Brands          =   $resource(appSettings.baseUrl+'v1/brands', {}, {
             query       :   {
                 method  :   'GET',
                 isArray :   false
@@ -16,7 +16,7 @@ angular.module('app')
             }
         });
 
-        var BrandsId        =   $resource(appSettings+'v1/brands/:id', {
+        var BrandsId        =   $resource(appSettings.baseUrl+'v1/brands/:id', {
 
         }, {
             show        :   {
@@ -82,7 +82,16 @@ angular.module('app')
                 vm.brands           =   $filter('orderBy')(vm.brands, 'str_brand_name', false);
                 vm.updateBrand      =   null;
 
-            });
+            })
+                .catch(function(response){
+
+                    if (response.status == 500){
+
+                        alert(response.data.message);
+
+                    }
+
+                });
 
         }
 
@@ -90,7 +99,8 @@ angular.module('app')
 
             BrandsId.destroy({id : brand.int_brand_id}).$promise.then(function(data){
 
-
+                vm.brands.splice(index, 1);
+                alert(data.message);
 
             });
 
