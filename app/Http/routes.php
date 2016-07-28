@@ -51,3 +51,15 @@ Route::get('maintenance_price' , function(){
     return view('maintenance_price');
 });
 
+Route::group(['prefix' => 'vapeorcrave/api'], function() {
+    // API Version 1
+    Route::group(['prefix' => 'v1'], function() {
+        Route::resource('brands', 'Api\\BrandApi');
+        Route::resource('categories', 'Api\\CategoryApi');
+        Route::resource('nicotines', 'Api\\NicotineApi');
+        Route::resource('prices', 'Api\\PriceApi');
+        Route::resource('products', 'Api\\ProductApi');
+        Route::resource('volumes', 'Api\\VolumeApi');
+    });
+});
+

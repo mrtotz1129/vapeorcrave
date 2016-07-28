@@ -16,7 +16,8 @@ class CreateTableBrand extends Migration
 
             $table->increments('int_brand_id');
             $table->string('str_brand_name');
-            $table->text('str_brand_photo_path');
+            $table->text('str_brand_photo_path')
+                ->nullable();
             $table->timestamps();
             $table->softDeletes();
 

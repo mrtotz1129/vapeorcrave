@@ -25,7 +25,8 @@ class CreateTableProduct extends Migration
                 ->unsigned();
             $table->string('str_product_name')
                 ->unique();
-            $table->text('str_product_photo_path');
+            $table->text('str_product_photo_path')
+                ->nullable();
             $table->timestamps();
             $table->softDeletes();
 
