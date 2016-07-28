@@ -5,6 +5,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="{!! asset('/main.js') !!}"></script>
+
 @section('htmlheader')
     @include('layouts.partials.htmlheader')
 @show
@@ -29,7 +32,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue sidebar-mini" ng-app="app">
 <div class="wrapper">
 
     @include('layouts.partials.mainheader')
