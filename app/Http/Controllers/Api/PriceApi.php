@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Price;
+
 class PriceApi extends Controller
 {
     /**
@@ -16,7 +18,12 @@ class PriceApi extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(array(
+            'active_product_prices' => Price::join('products', 'prices.int_product_id_fk', '=', 'products.int_product_id')
+                ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
+                ->select('products.str_product_name', 'categories.str_category_name', 'prices.deci_price')
+                ->get()
+        ));
     }
 
     /**
@@ -37,7 +44,10 @@ class PriceApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Price::create(array(
+            'int_product_id_fk' => $request->int_product_id_fk,
+            'int_price_id'      => $request->int_price_id
+        ));
     }
 
     /**
@@ -59,7 +69,9 @@ class PriceApi extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(array(
+            'selected_product_price_details' => $this->findProductPrice($id)
+        ));
     }
 
     /**
@@ -71,7 +83,14 @@ class PriceApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $productPrice = $this->findProductPrice($id);
+
+        if(count($productPrice) > 0) {
+            $productPrice->int_product_id_fk    = $request->int_product_id_fk;
+            $productPrice->deci_price           = $request->deci_price;
+
+            $productPrice->save();
+        }
     }
 
     /**
@@ -82,6 +101,14 @@ class PriceApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $productPrice = $this->findProductPrice($id);
+
+        if(count($productPrice) > 0) {
+            $productPrice->delete();
+        }
+    }
+
+    public function findProductPrice($id) {
+        return Price::find($id);
     }
 }

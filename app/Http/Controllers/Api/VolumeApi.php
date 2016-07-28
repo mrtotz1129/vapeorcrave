@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Volume;
+
 class VolumeApi extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class VolumeApi extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(array(
+            'active_volumes' => Volume::all()
+        ));
     }
 
     /**
@@ -37,7 +41,9 @@ class VolumeApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Volume::create(array(
+            'str_volume_name'        => $request->str_volume_name
+        ));
     }
 
     /**
@@ -59,7 +65,9 @@ class VolumeApi extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(array(
+            'selected_volume_details' => $this->findVolume($id)
+        ));
     }
 
     /**
@@ -71,7 +79,13 @@ class VolumeApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $volume = $this->findVolume($id);
+
+        if(count($volume) > 0) {
+            $volume->str_volume_name = $request->str_volume_name;
+
+            $volume->save();
+        }
     }
 
     /**
@@ -82,6 +96,14 @@ class VolumeApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $volume = $this->findVolume($id);
+
+        if(count($volume) > 0) {
+            $volume->delete();
+        }
+    }
+
+    public function findVolume($id) {
+        return Volume::find($id);
     }
 }

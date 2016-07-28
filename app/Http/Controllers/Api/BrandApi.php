@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Brand;
+
 class BrandApi extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class BrandApi extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(array(
+            'active_brands' => Brand::all()
+        ));
     }
 
     /**
@@ -37,7 +41,10 @@ class BrandApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Brand::create(array(
+            'str_brand_name'        => $request->str_brand_name,
+            'str_brand_photo_path'  => null // for now
+        ));
     }
 
     /**
@@ -59,7 +66,9 @@ class BrandApi extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(array(
+            'selected_brand_details' => $this->findBrand($id)
+        ));
     }
 
     /**
@@ -71,7 +80,14 @@ class BrandApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $brand = $this->findBrand($id);
+
+        if(count($brand) > 0) {
+            $brand->str_brand_name          = $request->str_brand_name;
+            $brand->str_brand_photo_path    = null; // for now
+
+            $brand->save();
+        }
     }
 
     /**
@@ -82,6 +98,14 @@ class BrandApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brand = $this->findBrand($id);
+
+        if(count($brand) > 0) {
+            $brand->delete();
+        }
+    }
+
+    public function findBrand($id) {
+        return Brand::find($id);
     }
 }

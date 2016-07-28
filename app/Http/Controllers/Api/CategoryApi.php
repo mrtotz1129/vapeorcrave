@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Category;
+
 class CategoryApi extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class CategoryApi extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(array(
+            'active_categories' => Category::all()
+        ));
     }
 
     /**
@@ -37,7 +41,9 @@ class CategoryApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create(array(
+            'str_category_name' => $request->str_category_name
+        ));
     }
 
     /**
@@ -59,7 +65,9 @@ class CategoryApi extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(array(
+            'selected_category_details' => $this->findCategory($id)
+        ));
     }
 
     /**
@@ -71,7 +79,13 @@ class CategoryApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = $this->finCategory($id);
+
+        if(count($category) > 0) {
+            $category->str_category_name   = $request->str_category_name;
+
+            $category->save();
+        }
     }
 
     /**
@@ -82,6 +96,14 @@ class CategoryApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = $this->findCategory($id);
+
+        if(count($category) > 0) {
+            $category->delete();
+        }
+    }
+
+    public function findCategory($id) {
+        return Category::find($id);
     }
 }

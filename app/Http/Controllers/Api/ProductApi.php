@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Product;
+
 class ProductApi extends Controller
 {
     /**
@@ -16,7 +18,14 @@ class ProductApi extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(array(
+            'active_products' => Product::join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
+                ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
+                ->join('volumes', 'products.int_volume_id_fk', '=', 'volumes.int_volume_id')
+                ->join('nicotines', 'products.int_nicotine_id_fk', '=', 'nicotines.int_nicotine_id')
+                ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level')
+                ->get()
+        ));
     }
 
     /**
@@ -37,7 +46,14 @@ class ProductApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create(array(
+            'str_product_name'          => $request->str_product_name,
+            'int_category_id_fk'        => $request->int_category_id_fk,
+            'int_brand_id_fk'           => $request->int_brand_id_fk,
+            'int_volume_id_fk'          => $request->int_volume_id_fk,
+            'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
+            'str_product_photo_path'    => null, // for now
+        ));
     }
 
     /**
@@ -59,7 +75,9 @@ class ProductApi extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(array(
+            'selected_product_details' => $this->findProduct($id)
+        ));
     }
 
     /**
@@ -71,7 +89,27 @@ class ProductApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /**
+            'str_product_name'          => $request->str_product_name,
+            'int_category_id_fk'        => $request->int_category_id_fk,
+            'int_brand_id_fk'           => $request->int_brand_id_fk,
+            'int_volume_id_fk'          => $request->int_volume_id_fk,
+            'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
+            'str_product_photo_path'    => null, // for now
+        **/
+
+        $product = $this->findProduct($id);
+
+        if(count($product) > 0) {
+            $product->str_product_name          = $request->str_product_name;
+            $product->int_category_id_fk        = $request->int_category_id_fk;
+            $product->int_brand_id_fk           = $request->int_brand_id_fk;
+            $product->int_volume_id_fk          = $request->int_volume_id_fk;
+            $product->int_nicotine_id_fk        = $request->int_nicotine_id_fk;
+            $product->str_product_photo_path    = $request->str_product_photo_path;
+
+            $product->save();
+        }
     }
 
     /**
@@ -82,6 +120,14 @@ class ProductApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->findProduct($id);
+
+        if(count($product) > 0) {
+            $product->delete();
+        }
+    }
+
+    public function findProduct($id) {
+        return Product::find($id);
     }
 }

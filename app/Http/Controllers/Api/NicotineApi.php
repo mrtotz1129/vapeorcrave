@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Nicotine;
+
 class NicotineApi extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class NicotineApi extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(array(
+            'active_nicotine_levels' => Nicotine::all()
+        ));
     }
 
     /**
@@ -37,7 +41,9 @@ class NicotineApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Nicotine::create(array(
+            'int_nicotine_level'    => $request->int_nicotine_level
+        ));
     }
 
     /**
@@ -59,7 +65,9 @@ class NicotineApi extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(array(
+            'selected_nicotine_level_details' => $this->findNicotineLevel($id)
+        ));
     }
 
     /**
@@ -71,7 +79,13 @@ class NicotineApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $nicotine = $this->findNicotineLevel($id);
+
+        if(count($nicotine) > 0) {
+            $nicotine->int_nicotine_level = $request->int_nicotine_level;
+
+            $nicotine->save();
+        }
     }
 
     /**
@@ -82,6 +96,14 @@ class NicotineApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nicotine = $this->findNicotineLevel($id);
+
+        if(count($nicotine) > 0) {
+            $nicotine->delete();
+        }
+    }
+
+    public function findNicotineLevel($id) {
+        return Nicotine::find($id);
     }
 }
