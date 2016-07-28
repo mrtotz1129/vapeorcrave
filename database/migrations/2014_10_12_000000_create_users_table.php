@@ -19,6 +19,19 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->integer('int_position_id_fk')
+                ->unsigned();
+            $table->integer('int_branch_id_fk')
+                ->unsigned();
+
+            $table->foreign('int_position_id_fk')
+                ->references('int_position_id')
+                ->on('positions');
+
+            $table->foreign('int_branch_id_fk')
+                ->references('int_branch_id')
+                ->on('branches');
         });
     }
 
