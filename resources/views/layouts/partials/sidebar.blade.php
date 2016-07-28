@@ -38,13 +38,13 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Maintenance</a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Add Brand</a></li>
-                    <li><a href="#">Add Category</a></li>
-                    <li><a href="#">Add Volume</a></li>
-                    <li><a href="#">Add Nicotine Level</a></li>
-                    <li><a href="#">Add Product</a></li>
+                    <li><a href="{!! url('maintenance_brand') !!}">Add Brand</a></li>
+                    <li><a href="{!! url('maintenance_category') !!}">Add Category</a></li>
+                    <li><a href="{!! url('maintenance_volume') !!}">Add Volume</a></li>
+                    <li><a href="{!! url('maintenance_nicotine') !!}">Add Nicotine Level</a></li>
+                    <li><a href="{!! url('maintenance_product') !!}">Add Product</a></li>
                     <li><a href="#">Branch</a></li>
-                    <li><a href="#">Price</a></li>
+                    <li><a href="{!! url('maintenance_price') !!}">Price</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class='fa fa-link'></i>History</a></li>
