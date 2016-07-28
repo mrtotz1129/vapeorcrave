@@ -56,11 +56,39 @@
                     <td><p>Nerdy Watermelon</p></td>
                     <td><p>E-Juice</p></td>
                     <td><p>$14.00</p></td>
-                    <td><a><button type="button" class="btn btn-danger">
+                    <td><a><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
+                                <i class="glyphicon glyphicon-trash"></i>Update</button></a>
+                        <a><button type="button" class="btn btn-danger">
                                 <i class="glyphicon glyphicon-trash"></i>Delete</button></a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Update Brand</h4>
+                </div>
+                <form ng-submit="saveUpdate()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="product_name">Product Price</label>
+                            <input type="integer" class="form-control" id="product_name" placeholder="Suggested Retail Price">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" value="Submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
