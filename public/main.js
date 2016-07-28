@@ -1,6 +1,6 @@
 'use strict;'
 
-var baseUrl     =   'http://localhost:8000/vape/api/';
+var baseUrl     =   'http://localhost:8000/vapeorcrave/api/v1';
 
 angular.module('app', [
     'ngResource'
