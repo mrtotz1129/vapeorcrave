@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1b4ff7a-7953-4401-97b8-e3b66aed155a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_07_28_154835_create_table_volume.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_07_28_155125_create_table_nicotine.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_07_28_155256_create_table_product.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_07_28_155830_create_table_price.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_07_28_160819_create_table_branch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vapeorcrave.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,10 +35,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2016_07_28_154320_create_table_brand.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2016_07_28_154320_create_table_brand.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2016_07_28_154320_create_table_brand.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
+              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2016_07_28_160819_create_table_branch.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2016_07_28_160819_create_table_branch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
               <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
               <folding />
             </state>
@@ -57,6 +64,7 @@
       <command text="php artisan make:migration create_table_product" />
       <command text="php artisan make:migration create_table_price" />
       <command text="php artisan migrate" />
+      <command text="php artisan make:migration create_table_branch" />
     </commandsHistory>
   </component>
   <component name="Git.Settings">
@@ -76,6 +84,7 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_07_28_154835_create_table_volume.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_07_28_154541_create_table_category.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_07_28_154320_create_table_brand.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_07_28_160819_create_table_branch.php" />
       </list>
     </option>
   </component>
@@ -228,12 +237,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1469719788064</updated>
-      <workItem from="1469719790402" duration="2005000" />
+      <workItem from="1469719790402" duration="2421000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2005000" />
+    <option name="totallyTimeSpent" value="2421000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
@@ -336,6 +345,14 @@
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_07_28_154320_create_table_brand.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_07_28_160819_create_table_branch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
           <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
           <folding />
         </state>
