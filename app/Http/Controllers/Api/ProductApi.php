@@ -24,7 +24,7 @@ class ProductApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_products' => array($this->queryProduct(null))
+            'active_products' => $this->queryProduct(null)
         ),
             200);
     }
@@ -189,15 +189,15 @@ class ProductApi extends Controller
             ->join('prices', 'prices.int_product_id_fk', '=', 'products.int_product_id')
             ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level', 'prices.deci_price', 'prices.int_price_id');
         if($id) {
-            $productQuery->where('products.int_product_id', '=', $id)
+            $resultQuery = $productQuery->where('products.int_product_id', '=', $id)
                 ->first();
         } else {
-            $productQuery->orderBy('prices.created_at')
+            $resultQuery = $productQuery->orderBy('prices.created_at')
                 ->groupBy('prices.int_product_id_fk')
                 ->get();
         }
 
-        return $productQuery;
+        return $resultQuery;
     }
 
     public function findProduct($id) 
