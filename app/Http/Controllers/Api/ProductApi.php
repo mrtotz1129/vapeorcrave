@@ -118,7 +118,7 @@ class ProductApi extends Controller
 
             $product        = $this->findProduct($id);
 
-            if(count($product) > 0 && count($productPrice) > 0) {
+            if(count($product) > 0) {
                 $product->str_product_name          = $request->str_product_name;
                 $product->int_category_id_fk        = $request->int_category_id_fk;
                 $product->int_brand_id_fk           = $request->int_brand_id_fk;
