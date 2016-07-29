@@ -24,7 +24,7 @@ class ProductApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_products' => $this->queryProduct(null);
+            'active_products' => $this->queryProduct(null)
         ),
             200);
     }
@@ -117,7 +117,6 @@ class ProductApi extends Controller
             DB::beginTransaction();
 
             $product        = $this->findProduct($id);
-            $productPrice   = Price::find(Input::get('priceId'));
 
             if(count($product) > 0 && count($productPrice) > 0) {
                 $product->str_product_name          = $request->str_product_name;
@@ -129,9 +128,10 @@ class ProductApi extends Controller
 
                 $product->save();
 
-                $productPrice->deci_price           = $request->deci_price;
-
-                $productPrice->save();
+                Price::create(array(
+                    'int_product_id_fk' => $product->int_product_id,
+                    'deci_price'        => $request->deci_price
+                ));
 
                 DB::commit();
             }
