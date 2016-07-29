@@ -20,7 +20,8 @@ class CategoryApi extends Controller
     {
         return response()->json(array(
             'active_categories' => Category::all()
-        ));
+        ),
+            200);
     }
 
     /**
@@ -41,6 +42,18 @@ class CategoryApi extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+        $category = Category::create(array(
+            'str_category_name' => $request->str_category_name
+        ));
+
+        return response()
+            ->json(
+                [
+                    'message'       =>  'Category is successfully created.',
+                    'category'      =>  $category
+                ],
+=======
         $category           =   Category::create(array(
             'str_category_name' => $request->str_category_name
         ));
@@ -50,6 +63,7 @@ class CategoryApi extends Controller
                     'message'           =>  'Category is successfully saved.',
                     'category'          =>  $category
                 ),
+>>>>>>> 0ff3f90af59861fd36b86172893b98fcf4548e32
                 201
             );
     }
@@ -75,7 +89,8 @@ class CategoryApi extends Controller
     {
         return response()->json(array(
             'selected_category_details' => $this->findCategory($id)
-        ));
+        ),
+            200);
     }
 
     /**
@@ -96,12 +111,20 @@ class CategoryApi extends Controller
         }
 
         return response()
+<<<<<<< HEAD
+            ->json([
+                'message'       =>  'Category is successfully updated.',
+                'category'      =>  $category
+            ],
+                200
+=======
             ->json(
                 array(
                     'message'           =>  'Category is successfully updated.',
                     'category'          =>  $category
                 ),
                 201
+>>>>>>> 0ff3f90af59861fd36b86172893b98fcf4548e32
             );
     }
 
@@ -121,10 +144,17 @@ class CategoryApi extends Controller
 
         return response()
             ->json(
+<<<<<<< HEAD
+                [
+                    'message'           =>  'Category is successfully deleted.'
+                ],
+                200
+=======
                 array(
                     'message'           =>  'Category is successfully deleted.'
                 ),
                 201
+>>>>>>> 0ff3f90af59861fd36b86172893b98fcf4548e32
             );
     }
 
