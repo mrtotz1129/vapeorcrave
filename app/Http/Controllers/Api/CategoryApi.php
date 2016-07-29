@@ -41,9 +41,17 @@ class CategoryApi extends Controller
      */
     public function store(Request $request)
     {
-        Category::create(array(
+        $category           =   Category::create(array(
             'str_category_name' => $request->str_category_name
         ));
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Category is successfully saved.',
+                    'category'          =>  $category
+                ),
+                201
+            );
     }
 
     /**
@@ -79,13 +87,22 @@ class CategoryApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = $this->finCategory($id);
+        $category = $this->findCategory($id);
 
         if(count($category) > 0) {
             $category->str_category_name   = $request->str_category_name;
 
             $category->save();
         }
+
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Category is successfully updated.',
+                    'category'          =>  $category
+                ),
+                201
+            );
     }
 
     /**
@@ -101,6 +118,14 @@ class CategoryApi extends Controller
         if(count($category) > 0) {
             $category->delete();
         }
+
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Category is successfully deleted.'
+                ),
+                201
+            );
     }
 
     public function findCategory($id) {
