@@ -20,23 +20,25 @@
             </div>
 
             <div class="col-md-8">
-                <table class="table table-hover">
+                <table id="inventory" class="table table-bordered table-bordered dataTable" role="grid" aria-describedBy="inventory_info">
                     <thead>
-                    <th data-field="product_nicotine">Nicotine Level</th>
-                    <th data-field="settings">Options</th>
+                    <tr role="row">
+                        <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 229px;" aria-label="AssetCode: activate to sort column ascending">Nicotine Level</th>
+                        <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 194px;" aria-label="NewAssetCode: activate to sort column ascending">Option</th>
                     </thead>
-
                     <tbody>
-                    <tr ng-repeat="nicotine in nicotines">
-                        <td><p>@{{ nicotine.int_nicotine_level }}</p></td>
-                        <td><a><button ng-click="getNicotine(nicotine, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
-                                    <i class="glyphicon glyphicon-trash"></i>Update</button></a>
-                            <a><button ng-click="deleteNicotine(nicotine, $index)" type="button" class="btn btn-danger">
-                                    <i class="glyphicon glyphicon-trash"></i>Delete</button></a></td>
-                    </tr>
+                        <tr ng-repeat="nicotine in nicotines">
+                            <td><p>@{{ nicotine.int_nicotine_level }}</p></td>
+                            <td><a><button ng-click="getNicotine(nicotine, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
+                                        <i class="glyphicon glyphicon-pencil"></i> Update</button></a>
+                                <a><button ng-click="deleteNicotine(nicotine, $index)" type="button" class="btn btn-danger">
+                                        <i class="glyphicon glyphicon-trash"></i> Delete</button></a></td>
+                        </tr>
                     </tbody>
+                    <tfoot></tfoot>
                 </table>
             </div>
+
         </div>
 
         <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

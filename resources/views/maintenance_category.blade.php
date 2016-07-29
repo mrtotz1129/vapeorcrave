@@ -19,24 +19,23 @@
                 </form>
             </div>
             <div class="col-md-8">
-                <div class="col-md-8">
-                    <table class="table table-hover">
-                        <thead>
-                        <th data-field="product_volume">Category Name</th>
-                        <th data-field="settings">Options</th>
-                        </thead>
-
-                        <tbody>
+                <table id="inventory" class="table table-bordered table-bordered dataTable" role="grid" aria-describedBy="inventory_info">
+                    <thead>
+                    <tr role="row">
+                        <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 229px;" aria-label="AssetCode: activate to sort column ascending">Category Name</th>
+                        <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 194px;" aria-label="NewAssetCode: activate to sort column ascending">Option</th>
+                    </thead>
+                    <tbody>
                         <tr ng-repeat="category in categories">
                             <td><p>@{{ category.str_category_name }}</p></td>
                             <td><a><button ng-click="getCategory(category, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
-                                        <i class="glyphicon glyphicon-trash"></i>Update</button></a>
+                                        <i class="glyphicon glyphicon-pencil"></i> Update</button></a>
                                 <a><button ng-click="deleteCategory(category, $index)" type="button" class="btn btn-danger">
-                                        <i class="glyphicon glyphicon-trash"></i>Delete</button></a></td>
+                                        <i class="glyphicon glyphicon-trash"></i> Delete</button></a></td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
             </div>
         </div>
 

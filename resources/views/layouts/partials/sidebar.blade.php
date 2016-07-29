@@ -38,13 +38,20 @@
             <li class="treeview {!! strpos(Request::url(), 'maintenance') == true ? 'active' : '' !!}">
                 <a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Maintenance</a>
                 <ul class="treeview-menu">
-                    <li class="{!! Request::url() == url('maintenance_brand') ? 'active' : '' !!}"><a href="{!! url('maintenance_brand') !!}">Add Brand</a></li>
-                    <li class="{!! Request::url() == url('maintenance_category') ? 'active' : '' !!}"><a href="{!! url('maintenance_category') !!}">Add Category</a></li>
-                    <li class="{!! Request::url() == url('maintenance_volume') ? 'active' : '' !!}"><a href="{!! url('maintenance_volume') !!}">Add Volume</a></li>
-                    <li class="{!! Request::url() == url('maintenance_nicotine') ? 'active' : '' !!}"><a href="{!! url('maintenance_nicotine') !!}">Add Nicotine Level</a></li>
-                    <li class="{!! Request::url() == url('maintenance_product') ? 'active' : '' !!}"><a href="{!! url('maintenance_product') !!}">Add Product</a></li>
-                    <li><a href="#">Branch</a></li>
-                    <li class="{!! Request::url() == url('maintenance_price') ? 'active' : '' !!}"><a href="{!! url('maintenance_price') !!}">Price</a></li>
+                    <li class="{!! Request::url() == url('maintenance_brand') ? 'active' : '' !!}"><a href="{!! url('maintenance_brand') !!}">Brand</a></li>
+                    <li class="{!! Request::url() == url('maintenance_category') ? 'active' : '' !!}"><a href="{!! url('maintenance_category') !!}">Category</a></li>
+                    <li class="{!! Request::url() == url('maintenance_volume') ? 'active' : '' !!}"><a href="{!! url('maintenance_volume') !!}">Volume</a></li>
+                    <li class="{!! Request::url() == url('maintenance_nicotine') ? 'active' : '' !!}"><a href="{!! url('maintenance_nicotine') !!}">Nicotine Level</a></li>
+                    <li class="{!! Request::url() == url('maintenance_product') ? 'active' : '' !!}"><a href="{!! url('maintenance_product') !!}">Product</a></li>
+                    <li class="{!! Request::url() == url('maintenance_position') ? 'active' : '' !!}"><a href="{!! url('maintenance_position') !!}">Position</a></li>
+                    <li class="{!! Request::url() == url('maintenance_branch') ? 'active' : '' !!}"><a href="{!! url('maintenance_branch') !!}">Branch</a></li>
+                    <li class="{!! Request::url() == url('maintenance_users') ? 'active' : '' !!}"><a href="{!! url('maintenance_users') !!}">User</a></li>
+                </ul>
+            </li>
+            <li class="treeview"><a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Transaction</a>
+                <ul class="treeview-menu">
+                    <li class="{!! Request::url() == url('transaction') ? 'active' : '' !!}"><a href="{!! url('transaction') !!}">Inventory</a></li>
+                    <li class="{!! Request::url() == url('pointofsales') ? 'active' : '' !!}"><a href="{!! url('pointofsales') !!}">Point of Sales</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class='fa fa-link'></i>History</a></li>

@@ -47,8 +47,24 @@ Route::get('maintenance_product' , function(){
     return view('maintenance_product');
 });
 
-Route::get('maintenance_price' , function(){
-    return view('maintenance_price');
+Route::get('maintenance_position' , function(){
+    return view('maintenance_position');
+});
+
+Route::get('maintenance_branch' , function(){
+    return view('maintenance_branch');
+});
+
+Route::get('maintenance_users' , function(){
+    return view('maintenance_users');
+});
+
+Route::get('transaction' , function(){
+    return view('transaction');
+});
+
+Route::get('pointofsales' , function(){
+    return view('pointofsales');
 });
 
 Route::group(['prefix' => 'vapeorcrave/api'], function() {
