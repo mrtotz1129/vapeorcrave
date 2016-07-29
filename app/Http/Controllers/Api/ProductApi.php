@@ -25,7 +25,8 @@ class ProductApi extends Controller
                 ->join('nicotines', 'products.int_nicotine_id_fk', '=', 'nicotines.int_nicotine_id')
                 ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level')
                 ->get()
-        ));
+        ),
+            200);
     }
 
     /**
@@ -46,7 +47,7 @@ class ProductApi extends Controller
      */
     public function store(Request $request)
     {
-        Product::create(array(
+        $product = Product::create(array(
             'str_product_name'          => $request->str_product_name,
             'int_category_id_fk'        => $request->int_category_id_fk,
             'int_brand_id_fk'           => $request->int_brand_id_fk,
@@ -54,6 +55,15 @@ class ProductApi extends Controller
             'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
             'str_product_photo_path'    => null, // for now
         ));
+
+        return response()
+            ->json(
+                [
+                    'message'       =>  'Product is successfully created.',
+                    'product'      =>  $product
+                ],
+                201
+            );
     }
 
     /**
@@ -77,7 +87,8 @@ class ProductApi extends Controller
     {
         return response()->json(array(
             'selected_product_details' => $this->findProduct($id)
-        ));
+        ),
+            200);
     }
 
     /**
@@ -89,15 +100,6 @@ class ProductApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        /**
-            'str_product_name'          => $request->str_product_name,
-            'int_category_id_fk'        => $request->int_category_id_fk,
-            'int_brand_id_fk'           => $request->int_brand_id_fk,
-            'int_volume_id_fk'          => $request->int_volume_id_fk,
-            'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
-            'str_product_photo_path'    => null, // for now
-        **/
-
         $product = $this->findProduct($id);
 
         if(count($product) > 0) {
@@ -110,6 +112,14 @@ class ProductApi extends Controller
 
             $product->save();
         }
+
+        return response()
+            ->json([
+                'message'       =>  'Product is successfully updated.',
+                'product'       =>  $product
+            ],
+                200
+            );
     }
 
     /**
@@ -125,6 +135,14 @@ class ProductApi extends Controller
         if(count($product) > 0) {
             $product->delete();
         }
+
+        return response()
+            ->json(
+                [
+                    'message'           =>  'Product is successfully deleted.'
+                ],
+                200
+            );
     }
 
     public function findProduct($id) {

@@ -46,6 +46,7 @@ class BrandApi extends Controller
             'str_brand_name'        => $request->str_brand_name,
             'str_brand_photo_path'  => 'anything' // for now
         ));
+        
         return response()
             ->json(
                 [

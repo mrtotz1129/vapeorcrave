@@ -20,7 +20,8 @@ class CategoryApi extends Controller
     {
         return response()->json(array(
             'active_categories' => Category::all()
-        ));
+        ),
+            200);
     }
 
     /**
@@ -41,9 +42,18 @@ class CategoryApi extends Controller
      */
     public function store(Request $request)
     {
-        Category::create(array(
+        $category = Category::create(array(
             'str_category_name' => $request->str_category_name
         ));
+
+        return response()
+            ->json(
+                [
+                    'message'       =>  'Category is successfully created.',
+                    'category'      =>  $category
+                ],
+                201
+            );
     }
 
     /**
@@ -67,7 +77,8 @@ class CategoryApi extends Controller
     {
         return response()->json(array(
             'selected_category_details' => $this->findCategory($id)
-        ));
+        ),
+            200);
     }
 
     /**
@@ -86,6 +97,14 @@ class CategoryApi extends Controller
 
             $category->save();
         }
+
+        return response()
+            ->json([
+                'message'       =>  'Category is successfully updated.',
+                'category'      =>  $category
+            ],
+                200
+            );
     }
 
     /**
@@ -101,6 +120,14 @@ class CategoryApi extends Controller
         if(count($category) > 0) {
             $category->delete();
         }
+
+        return response()
+            ->json(
+                [
+                    'message'           =>  'Category is successfully deleted.'
+                ],
+                200
+            );
     }
 
     public function findCategory($id) {
