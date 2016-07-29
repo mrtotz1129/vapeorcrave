@@ -70,8 +70,7 @@ class ProductApi extends Controller
                 ->json(
                     [
                         'message'       =>  'Product is successfully created.',
-                        'product'      =>   $product,
-                        'price'         =>  $price
+                        'product'      =>   $this->queryProduct($product->int_product_id)
                     ],
                     201
                 );
@@ -147,8 +146,7 @@ class ProductApi extends Controller
             return response()
                 ->json([
                     'message'       =>  'Product is successfully updated.',
-                    'product'       =>  $product,
-                    'price'         =>  $price
+                    'product'      =>   $this->queryProduct($product->int_product_id)
                 ],
                     200
                 );
@@ -180,14 +178,26 @@ class ProductApi extends Controller
             );
     }
 
-    public function queryProduct($id) 
+    public function queryProduct($id)
     {
         $productQuery = Product::join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
             ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
             ->join('volumes', 'products.int_volume_id_fk', '=', 'volumes.int_volume_id')
             ->join('nicotines', 'products.int_nicotine_id_fk', '=', 'nicotines.int_nicotine_id')
             ->join('prices', 'prices.int_product_id_fk', '=', 'products.int_product_id')
-            ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level', 'prices.deci_price', 'prices.int_price_id');
+            ->select('products.int_product_id',
+                'products.str_product_photo_path',
+                'products.str_product_name',
+                'categories.str_category_name',
+                'volumes.str_volume_name',
+                'nicotines.int_nicotine_level',
+                'prices.deci_price',
+                'prices.int_price_id',
+                'brands.str_brand_name',
+                'products.int_category_id_fk',
+                'products.int_brand_id_fk',
+                'products.int_volume_id_fk',
+                'products.int_nicotine_id_fk');
         if($id) {
             $resultQuery = $productQuery->where('products.int_product_id', '=', $id)
                 ->first();

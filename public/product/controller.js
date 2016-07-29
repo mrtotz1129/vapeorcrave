@@ -99,7 +99,6 @@ angular.module('app')
             Products.save(vm.newProduct).$promise.then(function(data){
 
                 alert(data.message);
-                data.product.deci_price         =   data.price.deci_price;
                 vm.products.push(data.product);
                 vm.products         =   $filter('orderBy')(vm.products, 'str_product_name', false);
                 vm.newProduct       =   null;
@@ -124,7 +123,6 @@ angular.module('app')
             ProductId.update({id : vm.updateProduct.int_product_id}, vm.updateProduct).$promise.then(function(data){
 
                 alert(data.message);
-                data.product.deci_price     =   data.price.deci_price;
                 vm.products.splice(vm.updateProduct.index, 1);
                 vm.products.push(data.product);
                 $('#modalUpdate').modal('hide');

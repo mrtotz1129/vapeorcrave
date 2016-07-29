@@ -67,20 +67,22 @@
                     <th data-field="product_category">Category</th>
                     <th data-field="product_volume">Volume</th>
                     <th data-field="product_nicotine">Nicotine Level</th>
+                    <th data-field="product_nicotine">Price</th>
                     <th data-field="settings">Options</th>
                     </thead>
 
                     <tbody>
                     <tr ng-repeat="product in products">
                         <td><img src="img/logo1.png" alt="" class="img-circle" height="60" width="60"></td>
-                        <td><p>@{{ product. }}</p></td>
-                        <td><p>Nerdy Watermelon</p></td>
-                        <td><p>E-Juice</p></td>
-                        <td><p>30mL</p></td>
-                        <td><p>0</p></td>
-                        <td><a><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
+                        <td><p>@{{ product.str_brand_name }}</p></td>
+                        <td><p>@{{ product.str_product_name }}</p></td>
+                        <td><p>@{{ product.str_category_name }}</p></td>
+                        <td><p>@{{ product.str_volume_name }}</p></td>
+                        <td><p>@{{ product.int_nicotine_level }}</p></td>
+                        <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
+                        <td><a><button ng-click="getProduct(product, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
                                     <i class="glyphicon glyphicon-trash"></i>Update</button></a>
-                            <a><button type="button" class="btn btn-danger">
+                            <a><button ng-click="deleteProduct(product, $index)" type="button" class="btn btn-danger">
                                     <i class="glyphicon glyphicon-trash"></i>Delete</button></a></td>
                     </tr>
                     </tbody>
