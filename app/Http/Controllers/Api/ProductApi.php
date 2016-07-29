@@ -56,7 +56,7 @@ class ProductApi extends Controller
                 'int_brand_id_fk'           => $request->int_brand_id_fk,
                 'int_volume_id_fk'          => $request->int_volume_id_fk,
                 'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
-                'str_product_photo_path'    => 'kahit ano', // for now
+                'str_product_photo_path'    => 'kahit ano' // for now
             ));
 
             $price                          = Price::create(array(
@@ -70,13 +70,20 @@ class ProductApi extends Controller
                 ->json(
                     [
                         'message'       =>  'Product is successfully created.',
-                        'product'      =>  $product,
+                        'product'      =>   $product,
                         'price'         =>  $price
                     ],
                     201
                 );
         } catch(QueryException $ex) {
             DB::rollBack();
+            return response()
+                ->json(
+                    array(
+                        'message'       =>  $ex->getMessage()
+                    ),
+                    500
+                );
         }
     }
 

@@ -94,6 +94,8 @@ angular.module('app')
 
         vm.saveProduct              =   function(){
 
+            console.log(vm.newProduct);
+
             Products.save(vm.newProduct).$promise.then(function(data){
 
                 alert(data.message);

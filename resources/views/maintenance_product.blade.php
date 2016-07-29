@@ -10,17 +10,17 @@
     <div ng-controller="ctrl.product">
         <div class="row">
             <div class="col-md-4">
-                <form>
+                <form ng-submit="saveProduct()" autocomplete="off">
                     <div class="form-group">
                         <select ng-model="newProduct.int_category_id_fk" class="form-control">
                             <option value="" disabled>Category</option>
-                            <option ng-repeat="category in categories" value="category.int_category_id">@{{ category.str_category_name }}</option>
+                            <option ng-repeat="category in categories" value="@{{ category.int_category_id }}">@{{ category.str_category_name }}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <select ng-model="newProduct.int_brand_id_fk" class="form-control">
                             <option value="" disabled>Brand</option>
-                            <option ng-repeat="brand in brands" value="brand.int_brand_id">@{{ brand.str_brand_name }}</option>
+                            <option ng-repeat="brand in brands" value="@{{ brand.int_brand_id }}">@{{ brand.str_brand_name }}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -43,13 +43,13 @@
                             <div class="col-md-6">
                                 <select ng-model="newProduct.int_volume_id_fk" class="form-control">
                                     <option value="" disabled>Volume</option>
-                                    <option ng-repeat="volume in volumes" value="volume.int_volume_id">@{{ volume.str_volume_name }}</option>
+                                    <option ng-repeat="volume in volumes" value="@{{ volume.int_volume_id }}">@{{ volume.str_volume_name }}</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
                                     <option value="" disabled>Nicotine</option>
-                                    <option ng-repeat="nicotine in nicotines" value="nicotine.int_nicotine_id">@{{ nicotine.int_nicotine_level }}</option>
+                                    <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
                                 </select>
                             </div>
                         </div>
@@ -102,13 +102,13 @@
                             <div class="form-group">
                                 <select ng-model="updateProduct.int_category_id_fk" class="form-control">
                                     <option value="" disabled>Category</option>
-                                    <option ng-repeat="category in categories" value="category.int_category_id">@{{ category.str_category_name }}</option>
+                                    <option ng-repeat="category in categories" value="@{{ category.int_category_id }}">@{{ category.str_category_name }}</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <select ng-model="updateProduct.int_brand_id_fk" class="form-control">
                                     <option value="" disabled>Brand</option>
-                                    <option ng-repeat="brand in brands" value="brand.int_brand_id">@{{ brand.str_brand_name }}</option>
+                                    <option ng-repeat="brand in brands" value="@{{ brand.int_brand_id }}">@{{ brand.str_brand_name }}</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -131,13 +131,13 @@
                                     <div class="col-md-6">
                                         <select ng-model="updateProduct.int_volume_id_fk" class="form-control">
                                             <option value="" disabled>Volume</option>
-                                            <option ng-repeat="volume in volumes" value="volume.int_volume_id">@{{ volume.str_volume_name }}</option>
+                                            <option ng-repeat="volume in volumes" value="@{{ volume.int_volume_id }}">@{{ volume.str_volume_name }}</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <select ng-model="updateProduct.int_nicotine_id_fk" class="form-control">
                                             <option value="" disabled>Nicotine</option>
-                                            <option ng-repeat="nicotine in nicotines" value="nicotine.int_nicotine_id">@{{ nicotine.int_nicotine_level }}</option>
+                                            <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
                                         </select>
                                     </div>
                                 </div>
