@@ -5,12 +5,12 @@
 @endsection
 
 @section('main-content')
-    <script src="{!! asset('/volume/controller.js !!}"></script>
+    <script src="{!! asset('/volume/controller.js') !!}"></script>
 
     <div ng-controller="ctrl.volume">
         <div class="row">
             <div class="col-md-4">
-                <form ng-submit="saveVolume()">
+                <form ng-submit="saveVolume()" autocomplete="off">
                     <div class="form-group">
                         <label for="product_volume">Volume</label>
                         <input ng-model="newVolume.str_volume_name" type="text" class="form-control" id="product_volume" placeholder="Volume">
@@ -47,7 +47,7 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Update Brand</h4>
                     </div>
-                    <form ng-submit="saveUpdate()">
+                    <form ng-submit="saveUpdate()" autocomplete="off">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="product_volume">Volume</label>

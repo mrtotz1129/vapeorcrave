@@ -23,7 +23,7 @@ angular.module('app')
             }
         });
 
-        var VolumeId            =   $resource(appSettings.baseUrl+'v1/volume/:id', {}, {
+        var VolumeId            =   $resource(appSettings.baseUrl+'v1/volumes/:id', {}, {
             update      :   {
                 method  :   'PUT',
                 isArray :   false
