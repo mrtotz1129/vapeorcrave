@@ -20,7 +20,8 @@ class BrandApi extends Controller
     {
         return response()->json(array(
             'active_brands' => Brand::all()
-        ));
+        ),
+            200);
     }
 
     /**
@@ -41,10 +42,18 @@ class BrandApi extends Controller
      */
     public function store(Request $request)
     {
-        Brand::create(array(
+        $brand          =   Brand::create(array(
             'str_brand_name'        => $request->str_brand_name,
-            'str_brand_photo_path'  => null // for now
+            'str_brand_photo_path'  => 'anything' // for now
         ));
+        return response()
+            ->json(
+                [
+                    'message'       =>  'Brand is successfully created.',
+                    'brand'         =>  $brand
+                ],
+                201
+            );
     }
 
     /**
@@ -68,7 +77,8 @@ class BrandApi extends Controller
     {
         return response()->json(array(
             'selected_brand_details' => $this->findBrand($id)
-        ));
+        ),
+            200);
     }
 
     /**
@@ -88,6 +98,13 @@ class BrandApi extends Controller
 
             $brand->save();
         }
+        return response()
+            ->json([
+                'message'       =>  'Brand is successfully updated.',
+                'brand'         =>  $brand
+            ],
+                200
+            );
     }
 
     /**
@@ -103,6 +120,14 @@ class BrandApi extends Controller
         if(count($brand) > 0) {
             $brand->delete();
         }
+
+        return response()
+            ->json(
+                [
+                    'message'           =>  'Brand is successfully deleted.'
+                ],
+                200
+            );
     }
 
     public function findBrand($id) {

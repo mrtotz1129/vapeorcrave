@@ -16,9 +16,7 @@ angular.module('app')
             }
         });
 
-        var BrandsId        =   $resource(appSettings.baseUrl+'v1/brands/:id', {
-
-        }, {
+        var BrandsId        =   $resource(appSettings.baseUrl+'v1/brands/:id', {}, {
             show        :   {
                 method  :   'GET',
                 isArray :   false
@@ -33,9 +31,16 @@ angular.module('app')
             }
         });
 
+        var BrandEdit       =   $resource(appSettings.baseUrl+'v1/brands/:id/edit', {}, {
+            edit        :   {
+                method  :   'GET',
+                isArray :   false
+            }
+        });
+
         Brands.query().$promise.then(function(data){
 
-            vm.brands       =   $filter('orderBy')(data.brands, 'str_brand_name', false);
+            vm.brands       =   $filter('orderBy')(data.active_brands, 'str_brand_name', false);
 
         });
 
@@ -63,9 +68,9 @@ angular.module('app')
 
         vm.getBrand         =   function(brand, index){
 
-            BrandsId.show({id : brand.int_brand_id}).$promise.then(function(data){
+            BrandEdit.edit({id : brand.int_brand_id}).$promise.then(function(data){
 
-                vm.updateBrand          =   data.brand;
+                vm.updateBrand          =   data.selected_brand_details;
                 vm.updateBrand.index    =   index;
 
             });
@@ -79,6 +84,7 @@ angular.module('app')
                 alert(data.message);
                 vm.brands.splice(vm.updateBrand.index, 1);
                 vm.brands.push(data.brand);
+                $('#modalUpdate').modal('hide');
                 vm.brands           =   $filter('orderBy')(vm.brands, 'str_brand_name', false);
                 vm.updateBrand      =   null;
 

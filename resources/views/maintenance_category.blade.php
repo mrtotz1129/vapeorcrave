@@ -5,7 +5,9 @@
 @endsection
 
 @section('main-content')
-    <div>
+    <script src="{!! asset('/category/controller.js !!}"></script>
+
+    <div ng-controller="ctrl.category">
         <div class="row">
             <div class="col-md-4">
                 <form>

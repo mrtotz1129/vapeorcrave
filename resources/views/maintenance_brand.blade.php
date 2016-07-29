@@ -10,7 +10,7 @@
     <div ng-controller="ctrl.brand">
         <div class="row">
             <div class="col-md-4">
-                <form ng-submit="saveBrand()">
+                <form ng-submit="saveBrand()" autocomplete="off">
                     <div class="form-group">
                         <label for="product_brand">Brand</label>
                         <input ng-model="newBrand.str_brand_name" type="text" class="form-control" id="product_brand" placeholder="Product Brand">
@@ -57,7 +57,7 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Update Brand</h4>
                     </div>
-                    <form ng-submit="saveUpdate()">
+                    <form ng-submit="saveUpdate()" autocomplete="off">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="product_brand">Brand</label>

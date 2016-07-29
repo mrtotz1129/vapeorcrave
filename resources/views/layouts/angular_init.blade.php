@@ -8,7 +8,7 @@
 	])
 	    .constant('appSettings', {
 	        baseUrl     :   baseUrl,
-	        csrfToken	: 	{!! csrf_token() !!}
+	        csrfToken	: 	'{!! csrf_token() !!}'
 	    })
 	    .run(function($rootScope){
 
