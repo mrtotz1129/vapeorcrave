@@ -13,7 +13,7 @@ use Input;
 
 class UserApi extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -103,7 +103,7 @@ class UserApi extends Controller
             $user->email                = $request->email;
             $user->password             = bcrypt($request->password);
             $user->int_position_id_fk   = $request->int_position_id_fk;
-            $user->int_branch_id_fk     = $request->int_branch_id_fk
+            $user->int_branch_id_fk     = $request->int_branch_id_fk;
 
             $user->save();
         }
@@ -139,7 +139,8 @@ class UserApi extends Controller
             );
     }
     
-    public function queryUser($id) {
+    public function queryUser($id) 
+    {
         $userQuery = User::join('positions', 'users.int_position_id_fk', '=', 'positions.int_position_id')
             ->join('branches', 'users.int_branch_id_fk', '=', 'branches.int_branch_id')
             ->select('users.id', 'users.email', 'users.name', 'positions.str_position_name', 'branches.str_branch_location');
