@@ -56,10 +56,10 @@ class ProductApi extends Controller
                 'int_brand_id_fk'           => $request->int_brand_id_fk,
                 'int_volume_id_fk'          => $request->int_volume_id_fk,
                 'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
-                'str_product_photo_path'    => null, // for now
+                'str_product_photo_path'    => 'kahit ano', // for now
             ));
 
-            Price::create(array(
+            $price                          = Price::create(array(
                 'int_product_id_fk' => $product->int_product_id,
                 'deci_price'        => $request->deci_price
             ));
@@ -70,7 +70,8 @@ class ProductApi extends Controller
                 ->json(
                     [
                         'message'       =>  'Product is successfully created.',
-                        'product'      =>  $product
+                        'product'      =>  $product,
+                        'price'         =>  $price
                     ],
                     201
                 );
@@ -118,17 +119,17 @@ class ProductApi extends Controller
 
             $product        = $this->findProduct($id);
 
-            if(count($product) > 0 && count($productPrice) > 0) {
+            if(count($product) > 0) {
                 $product->str_product_name          = $request->str_product_name;
                 $product->int_category_id_fk        = $request->int_category_id_fk;
                 $product->int_brand_id_fk           = $request->int_brand_id_fk;
                 $product->int_volume_id_fk          = $request->int_volume_id_fk;
                 $product->int_nicotine_id_fk        = $request->int_nicotine_id_fk;
-                $product->str_product_photo_path    = $request->str_product_photo_path;
+                $product->str_product_photo_path    = 'kahit ano'; // for the meantime
 
                 $product->save();
 
-                Price::create(array(
+                $price                              = Price::create(array(
                     'int_product_id_fk' => $product->int_product_id,
                     'deci_price'        => $request->deci_price
                 ));
@@ -139,7 +140,8 @@ class ProductApi extends Controller
             return response()
                 ->json([
                     'message'       =>  'Product is successfully updated.',
-                    'product'       =>  $product
+                    'product'       =>  $product,
+                    'price'         =>  $price
                 ],
                     200
                 );
