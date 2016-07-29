@@ -24,7 +24,7 @@ class ProductApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_products' => $this->queryProduct(null)
+            'active_products' => array($this->queryProduct(null))
         ),
             200);
     }
