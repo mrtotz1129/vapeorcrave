@@ -180,10 +180,12 @@ class ProductApi extends Controller
             ->join('prices', 'prices.int_product_id_fk', '=', 'products.int_product_id')
             ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level', 'prices.deci_price', 'prices.int_price_id');
         if($id) {
-            $productQuery->where('products.int_product_id', '=', $id);
-            $productQuery->first();
+            $productQuery->where('products.int_product_id', '=', $id)
+                ->first();
         } else {
-            $productQuery->get();
+            $productQuery->orderBy('prices.created_at')
+                ->groupBy('prices.int_product_id_fk')
+                ->get();
         }
 
         return $productQuery;
