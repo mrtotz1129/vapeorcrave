@@ -41,9 +41,17 @@ class NicotineApi extends Controller
      */
     public function store(Request $request)
     {
-        Nicotine::create(array(
+        $nicotine           =   Nicotine::create(array(
             'int_nicotine_level'    => $request->int_nicotine_level
         ));
+        return response()
+            ->json(
+                array(
+                    'message'       =>  'Nicotine level is successfully saved.',
+                    'nicotine'      =>  $nicotine
+                ),
+                201
+            );
     }
 
     /**
@@ -86,6 +94,15 @@ class NicotineApi extends Controller
 
             $nicotine->save();
         }
+
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Nicotine level is successfully updated.',
+                    'nicotine'          =>  $nicotine
+                ),
+                201
+            );
     }
 
     /**
@@ -101,6 +118,14 @@ class NicotineApi extends Controller
         if(count($nicotine) > 0) {
             $nicotine->delete();
         }
+
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Nicotine level is successfully deleted.',
+                ),
+                201
+            );
     }
 
     public function findNicotineLevel($id) {

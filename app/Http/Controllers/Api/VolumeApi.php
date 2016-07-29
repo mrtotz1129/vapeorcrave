@@ -41,9 +41,17 @@ class VolumeApi extends Controller
      */
     public function store(Request $request)
     {
-        Volume::create(array(
+        $volume         =   Volume::create(array(
             'str_volume_name'        => $request->str_volume_name
         ));
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Volume is successfully saved.',
+                    'volume'            =>  $volume
+                ),
+                201
+            );
     }
 
     /**
@@ -86,6 +94,15 @@ class VolumeApi extends Controller
 
             $volume->save();
         }
+
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Volume is successfully updated.',
+                    'volume'            =>  $volume
+                ),
+                201
+            );
     }
 
     /**
@@ -101,6 +118,14 @@ class VolumeApi extends Controller
         if(count($volume) > 0) {
             $volume->delete();
         }
+
+        return response()
+            ->json(
+                array(
+                    'message'           =>  'Volume is successfully deleted.'
+                ),
+                201
+            );
     }
 
     public function findVolume($id) {
