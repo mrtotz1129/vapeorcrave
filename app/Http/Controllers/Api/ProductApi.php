@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+use Input;
+
 use App\Product;
+use App\Price;
 
 class ProductApi extends Controller
 {
@@ -19,12 +24,7 @@ class ProductApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_products' => Product::join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
-                ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
-                ->join('volumes', 'products.int_volume_id_fk', '=', 'volumes.int_volume_id')
-                ->join('nicotines', 'products.int_nicotine_id_fk', '=', 'nicotines.int_nicotine_id')
-                ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level')
-                ->get()
+            'active_products' => $this->queryProduct(null);
         ),
             200);
     }
@@ -47,23 +47,36 @@ class ProductApi extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create(array(
-            'str_product_name'          => $request->str_product_name,
-            'int_category_id_fk'        => $request->int_category_id_fk,
-            'int_brand_id_fk'           => $request->int_brand_id_fk,
-            'int_volume_id_fk'          => $request->int_volume_id_fk,
-            'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
-            'str_product_photo_path'    => null, // for now
-        ));
+        try {
+            DB::beginTransaction();
 
-        return response()
-            ->json(
-                [
-                    'message'       =>  'Product is successfully created.',
-                    'product'      =>  $product
-                ],
-                201
-            );
+            $product = Product::create(array(
+                'str_product_name'          => $request->str_product_name,
+                'int_category_id_fk'        => $request->int_category_id_fk,
+                'int_brand_id_fk'           => $request->int_brand_id_fk,
+                'int_volume_id_fk'          => $request->int_volume_id_fk,
+                'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
+                'str_product_photo_path'    => null, // for now
+            ));
+
+            Price::create(array(
+                'int_product_id_fk' => $product->int_product_id,
+                'deci_price'        => $request->deci_price
+            ));
+
+            DB::commit();
+
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Product is successfully created.',
+                        'product'      =>  $product
+                    ],
+                    201
+                );
+        } catch(QueryException $ex) {
+            DB::rollBack();
+        }
     }
 
     /**
@@ -86,7 +99,7 @@ class ProductApi extends Controller
     public function edit($id)
     {
         return response()->json(array(
-            'selected_product_details' => $this->findProduct($id)
+            'selected_product_details' => $this->queryProduct($id)
         ),
             200);
     }
@@ -100,26 +113,39 @@ class ProductApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = $this->findProduct($id);
+        try {
+            DB::beginTransaction();
 
-        if(count($product) > 0) {
-            $product->str_product_name          = $request->str_product_name;
-            $product->int_category_id_fk        = $request->int_category_id_fk;
-            $product->int_brand_id_fk           = $request->int_brand_id_fk;
-            $product->int_volume_id_fk          = $request->int_volume_id_fk;
-            $product->int_nicotine_id_fk        = $request->int_nicotine_id_fk;
-            $product->str_product_photo_path    = $request->str_product_photo_path;
+            $product        = $this->findProduct($id);
+            $productPrice   = Price::find(Input::get('priceId'));
 
-            $product->save();
+            if(count($product) > 0 && count($productPrice) > 0) {
+                $product->str_product_name          = $request->str_product_name;
+                $product->int_category_id_fk        = $request->int_category_id_fk;
+                $product->int_brand_id_fk           = $request->int_brand_id_fk;
+                $product->int_volume_id_fk          = $request->int_volume_id_fk;
+                $product->int_nicotine_id_fk        = $request->int_nicotine_id_fk;
+                $product->str_product_photo_path    = $request->str_product_photo_path;
+
+                $product->save();
+
+                $productPrice->deci_price           = $request->deci_price;
+
+                $productPrice->save();
+
+                DB::commit();
+            }
+
+            return response()
+                ->json([
+                    'message'       =>  'Product is successfully updated.',
+                    'product'       =>  $product
+                ],
+                    200
+                );
+        } catch(QueryException $ex) {
+            DB::rollBack();
         }
-
-        return response()
-            ->json([
-                'message'       =>  'Product is successfully updated.',
-                'product'       =>  $product
-            ],
-                200
-            );
     }
 
     /**
@@ -145,7 +171,26 @@ class ProductApi extends Controller
             );
     }
 
-    public function findProduct($id) {
+    public function queryProduct($id) 
+    {
+        $productQuery = Product::join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
+            ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
+            ->join('volumes', 'products.int_volume_id_fk', '=', 'volumes.int_volume_id')
+            ->join('nicotines', 'products.int_nicotine_id_fk', '=', 'nicotines.int_nicotine_id')
+            ->join('prices', 'prices.int_product_id_fk', '=', 'products.int_product_id')
+            ->select('products.int_product_id', 'products.str_product_photo_path', 'products.str_product_name', 'categories.str_category_name', 'volumes.str_volume_name', 'nicotines.int_nicotine_level', 'prices.deci_price', 'prices.int_price_id');
+        if($id) {
+            $productQuery->where('products.int_product_id', '=', $id);
+            $productQuery->first();
+        } else {
+            $productQuery->get();
+        }
+
+        return $productQuery;
+    }
+
+    public function findProduct($id) 
+    {
         return Product::find($id);
     }
 }

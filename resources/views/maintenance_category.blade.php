@@ -5,15 +5,15 @@
 @endsection
 
 @section('main-content')
-    <script src="{!! asset('/category/controller.js !!}"></script>
+    <script src="{!! asset('/category/controller.js') !!}"></script>
 
     <div ng-controller="ctrl.category">
         <div class="row">
             <div class="col-md-4">
-                <form>
+                <form ng-submit="saveCategory()" autocomplete="off">
                     <div class="form-group">
                         <label for="category_name">Category Name</label>
-                        <input type="integer" class="form-control" id="category_name" placeholder="Category Name">
+                        <input ng-model="newCategory.str_category_name" type="text" class="form-control" id="category_name" placeholder="Category Name">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -27,11 +27,11 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><p>30mL</p></td>
-                            <td><a><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
+                        <tr ng-repeat="category in categories">
+                            <td><p>@{{ category.str_category_name }}</p></td>
+                            <td><a><button ng-click="getCategory(category, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
                                         <i class="glyphicon glyphicon-trash"></i>Update</button></a>
-                                <a><button type="button" class="btn btn-danger">
+                                <a><button ng-click="deleteCategory(category, $index)" type="button" class="btn btn-danger">
                                         <i class="glyphicon glyphicon-trash"></i>Delete</button></a></td>
                         </tr>
                         </tbody>
@@ -51,11 +51,11 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Update Brand</h4>
                     </div>
-                    <form ng-submit="saveUpdate()">
+                    <form ng-submit="saveUpdate()" autocomplete="off">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="category_name">Category Name</label>
-                                <input type="integer" class="form-control" id="category_name" placeholder="Category Name">
+                                <input ng-model="updateCategory.str_category_name" type="text" class="form-control" id="category_name" placeholder="Category Name">
                             </div>
                         </div>
                         <div class="modal-footer">
