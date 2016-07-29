@@ -71,9 +71,9 @@
                     </thead>
 
                     <tbody>
-                    <tr>
+                    <tr ng-repeat="product in products">
                         <td><img src="img/logo1.png" alt="" class="img-circle" height="60" width="60"></td>
-                        <td><p>White Wolves</p></td>
+                        <td><p>@{{ product. }}</p></td>
                         <td><p>Nerdy Watermelon</p></td>
                         <td><p>E-Juice</p></td>
                         <td><p>30mL</p></td>
