@@ -88,7 +88,7 @@
                                                 <td><p>@{{ product.str_volume_name }}</p></td>
                                                 <td><p>@{{ product.int_nicotine_level }}</p></td>
                                                 <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
-                                                <td><a><button ng-click="getProduct(product, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#quantitymodal">
+                                                <td><a><button ng-click="openAddToCart(product, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#addToCart">
                                                             <i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart</button></a></td>
                                             </tr>
                                             </tbody>
@@ -176,19 +176,19 @@
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Category</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Equipment: activate to sort column ascending">Volume</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Nicotine Level</th>
-                                                <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Price</th>
+                                                <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Total Price</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Quantity</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Options</th>
                                             </thead>
                                             <tbody>
-                                            <tr ng-repeat="product in products">
+                                            <tr ng-repeat="product in cartProducts">
                                                 <td><p>@{{ product.str_brand_name }}</p></td>
                                                 <td><p>@{{ product.str_product_name }}</p></td>
                                                 <td><p>@{{ product.str_category_name }}</p></td>
                                                 <td><p>@{{ product.str_volume_name }}</p></td>
                                                 <td><p>@{{ product.int_nicotine_level }}</p></td>
-                                                <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
-                                                <td><p>10</p></td>
+                                                <td><p>@{{ product.deci_price * product.int_quantity | currency: 'P' }}</p></td>
+                                                <td><p>@{{ product.int_quantity }}</p></td>
                                                 <td><a><button ng-click="deleteProduct(product, $index)" type="button" class="btn btn-danger">
                                                             <i class="glyphicon glyphicon-trash"></i> Remove to Cart</button></a></td>
                                             </tr>
@@ -238,7 +238,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a><button ng-click="getCategory(category, $index)" type="button" class="btn btn-success" data-toggle="modal" data-target="#checkoutmodal">
+                                <a><button ng-click="checkOut()" type="button" class="btn btn-success" data-toggle="modal" data-target="#checkoutmodal">
                                         <i class="glyphicon glyphicon-ok"></i> Checkout</button></a>
                             </div>
                         </div>
@@ -246,7 +246,7 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="quantitymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -255,7 +255,7 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Add Item to Cart</h4>
                         </div>
-                        <form ng-submit="saveUpdate()" autocomplete="off">
+                        <form ng-submit="addToCart()" autocomplete="off">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-5">
@@ -268,13 +268,13 @@
                                         <p>Quantity</p>
                                     </div>
                                     <div class="col-md-7">
-                                        <p>White Wolves</p>
-                                        <p>Watermelon</p>
-                                        <p>E-Juice</p>
-                                        <p>30ml</p>
-                                        <p>0</p>
-                                        <p>100.00</p>
-                                        <input class="col-md-8" id="quantity" placeholder="Enter Quantity">
+                                        <p>@{{ addToCartProduct.str_brand_name }}</p>
+                                        <p>@{{ addToCartProduct.str_product_name }}</p>
+                                        <p>@{{ addToCartProduct.str_category_name }}</p>
+                                        <p>@{{ addToCartProduct.str_volume_name }}</p>
+                                        <p>@{{ addToCartProduct.int_nicotine_level }}</p>
+                                        <p>@{{ addToCartProduct.deci_price | currency : 'P' }}</p>
+                                        <input ng-model="addToCartProduct.int_quantity" ui-number-mask="0" type="text" class="col-md-8" id="quantity" placeholder="Enter Quantity">
                                     </div>
                                 </div>
                                 <br>
@@ -283,7 +283,7 @@
                                         <p>Total Price</p>
                                     </div>
                                     <div class="col-md-7">
-                                        <p>0.00</p>
+                                        <p>@{{ addToCartProduct.int_quantity * addToCartProduct.deci_price | currency : 'P' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -314,20 +314,18 @@
                                             <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 229px;" aria-label="AssetCode: activate to sort column ascending">Brand Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 194px;" aria-label="NewAssetCode: activate to sort column ascending">Product Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Category</th>
-                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Equipment: activate to sort column ascending">Volume</th>
                                             <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Nicotine Level</th>
-                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Price</th>
                                             <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Quantity</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Total Price</th>
                                         </thead>
                                         <tbody>
-                                        <tr ng-repeat="product in products">
+                                        <tr ng-repeat="product in cartProducts">
                                             <td><p>@{{ product.str_brand_name }}</p></td>
                                             <td><p>@{{ product.str_product_name }}</p></td>
                                             <td><p>@{{ product.str_category_name }}</p></td>
-                                            <td><p>@{{ product.str_volume_name }}</p></td>
                                             <td><p>@{{ product.int_nicotine_level }}</p></td>
-                                            <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
-                                            <td><p>10</p></td>
+                                            <td><p>@{{ product.int_quantity }}</p></td>
+                                            <td><p>@{{ product.deci_price * product.int_quantity | currency: 'P' }}</p></td>
                                         </tr>
                                         </tbody>
                                         <tfoot>
@@ -341,7 +339,7 @@
                                         <p>Grand Price</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>0.00</p>
+                                        <p>@{{ deciTotalPrice | currency : 'P' }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -349,7 +347,7 @@
                                         <p>Amount to Pay</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="col-md-12" type="number" placeholder="00.00">
+                                        <input ng-model="checkout.deci_amount_paid" class="col-md-12" ui-number-mask="2" type="text" placeholder="00.00">
                                     </div>
                                 </div>
                             </div>
