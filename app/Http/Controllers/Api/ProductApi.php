@@ -11,8 +11,9 @@ use App\Http\Controllers\Controller;
 use DB;
 use Input;
 
-use App\Product;
+use App\Inventory;
 use App\Price;
+use App\Product;
 
 class ProductApi extends Controller
 {
@@ -213,5 +214,46 @@ class ProductApi extends Controller
     public function findProduct($id) 
     {
         return Product::find($id);
+    }
+
+    public function getProductInventories()
+    {
+        return response()->json(array(
+            'inventories' => $this->queryInventory(null)
+        ),
+            200);
+    }
+
+    public function storeProductInventories($id, Request $request)
+    {
+        $productInventory = $this->queryInventory($id);
+
+        Inventory::create(array(
+            'int_branch_id_fk'  => $request->int_branch_id,
+            'int_product_id_fk' => $request->int_product_id,
+            'int_prev_value'    => !$productInventory ? 0 : $productInventory->int_current_value,
+            'int_current_value' => $productInventory->int_current_value + $request->int_quantity,
+            'bool_is_consigned' => false,   // for now
+            'int_user_id_fk'    => 1,       // for now
+        ));
+    }
+
+     public function queryInventory($id) 
+    {
+        $inventoryQuery = Inventory::join('branches', 'inventories.int_branch_id_fk', '=', 'branches.int_branch_id')
+            ->rightJoin('products', 'inventories.int_product_id_fk', '=', 'products.int_product_id')
+            ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
+            ->join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
+            ->select('inventories.int_inventory_id', 'brands.str_brand_name', 'categories.str_category_name', 'products.str_product_name', 'inventories.int_current_value', 'inventories.int_product_id_fk');
+
+        if($id) {
+            $resultQuery = $inventoryQuery->where('inventories.int_product_id_fk', '=', $id)
+                ->orderBy('inventories.created_at', 'DESC')
+                ->first();
+        } else {
+            $resultQuery = $inventoryQuery->get();
+        }
+
+        return $resultQuery;
     }
 }
