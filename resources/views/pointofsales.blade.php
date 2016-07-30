@@ -33,7 +33,7 @@
 
         <br>
 
-        <div class="row">
+        <div class="row responsive">
             <div class="col-md-6">
             <div class="row responsive">
                     <div class="box">
@@ -88,8 +88,8 @@
                                                 <td><p>@{{ product.str_volume_name }}</p></td>
                                                 <td><p>@{{ product.int_nicotine_level }}</p></td>
                                                 <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
-                                                <td><a><button ng-click="getProduct(product, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalUpdate">
-                                                            <i class="glyphicon glyphicon-pencil"></i> Add to Cart</button></a></td>
+                                                <td><a><button ng-click="getProduct(product, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#quantitymodal">
+                                                            <i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart</button></a></td>
                                             </tr>
                                             </tbody>
                                             <tfoot>
@@ -171,7 +171,6 @@
                                         <table id="inventory" class="table table-bordered table-responsive dataTable" role="grid" aria-describedBy="inventory_info">
                                             <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 180px;" aria-sort="ascending" aria-label="ItemID: activate to sort column descending">Logo</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 229px;" aria-label="AssetCode: activate to sort column ascending">Brand Name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 194px;" aria-label="NewAssetCode: activate to sort column ascending">Product Name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Category</th>
@@ -182,7 +181,7 @@
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Options</th>
                                             </thead>
                                             <tbody>
-                                            <tr ng-repeat="product in cartProducts">
+                                            <tr ng-repeat="product in products">
                                                 <td><p>@{{ product.str_brand_name }}</p></td>
                                                 <td><p>@{{ product.str_product_name }}</p></td>
                                                 <td><p>@{{ product.str_category_name }}</p></td>
@@ -239,10 +238,126 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a><button ng-click="getCategory(category, $index)" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalUpdate">
+                                <a><button ng-click="getCategory(category, $index)" type="button" class="btn btn-success" data-toggle="modal" data-target="#checkoutmodal">
                                         <i class="glyphicon glyphicon-ok"></i> Checkout</button></a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="quantitymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Add Item to Cart</h4>
+                        </div>
+                        <form ng-submit="saveUpdate()" autocomplete="off">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <p>Brand Name</p>
+                                        <p>Product Name</p>
+                                        <p>Category</p>
+                                        <p>Volume</p>
+                                        <p>Nicotine Level</p>
+                                        <p>Price</p>
+                                        <p>Quantity</p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>White Wolves</p>
+                                        <p>Watermelon</p>
+                                        <p>E-Juice</p>
+                                        <p>30ml</p>
+                                        <p>0</p>
+                                        <p>100.00</p>
+                                        <input class="col-md-8" id="quantity" placeholder="Enter Quantity">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <p>Total Price</p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>0.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" value="Submit" class="btn btn-warning">Add to Cart</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="checkoutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Official Receipt</h4>
+                        </div>
+                        <form ng-submit="saveUpdate()" autocomplete="off">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <table id="inventory" class="table table-bordered table-responsive dataTable" role="grid" aria-describedBy="inventory_info">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 229px;" aria-label="AssetCode: activate to sort column ascending">Brand Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 194px;" aria-label="NewAssetCode: activate to sort column ascending">Product Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Category</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Equipment: activate to sort column ascending">Volume</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Nicotine Level</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Price</th>
+                                            <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Quantity</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="product in products">
+                                            <td><p>@{{ product.str_brand_name }}</p></td>
+                                            <td><p>@{{ product.str_product_name }}</p></td>
+                                            <td><p>@{{ product.str_category_name }}</p></td>
+                                            <td><p>@{{ product.str_volume_name }}</p></td>
+                                            <td><p>@{{ product.int_nicotine_level }}</p></td>
+                                            <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
+                                            <td><p>10</p></td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Grand Price</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>0.00</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Amount to Pay</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="col-md-12" type="number" placeholder="00.00">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
