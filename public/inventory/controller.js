@@ -5,20 +5,29 @@ angular.module('app')
 
         var vm                  =   $scope;
 
-        var Products            =   $resource(appSettings.baseUrl+'v1/products', {}, {
+        var Products            =   $resource(appSettings.baseUrl+'v1/products/inventories', {}, {
             query       :   {
                 method  :   'GET',
                 isArray :   false
             }
         });
 
-        var Inventories         =   $resource(appSettings.baseUrl+'v1/inventories/:id', {
+        var Inventories         =   $resource(appSettings.baseUrl+'v1/products/:id/inventories', {
             id          :   '@id'
         });
 
         Products.query().$promise.then(function(data){
 
-            vm.products             =   $filter('orderBy')(data.active_products, 'str_product_name', false);
+            angular.forEach(data.inventories, function(inventory){
+
+                if (inventory.int_current_value == null){
+
+                    inventory.int_current_value =   parseInt(0);
+
+                }
+
+            });
+            vm.products             =   $filter('orderBy')(data.inventories, 'str_product_name', false);
 
         });
 
@@ -47,11 +56,21 @@ angular.module('app')
 
             }else{
 
-                var newInventory    =   new Inventories({id : vm.productToAdd.int_product_id}, vm.productToAdd);
+                vm.productToAdd.id      =   vm.productToAdd.int_product_id;
+                var newInventory    =   new Inventories(vm.productToAdd);
                 newInventory.$save(function(data, response){
 
                     alert(data.message);
                     $('#modalInventory').modal('hide');
+                    angular.forEach(vm.products, function(product){
+
+                        if (product.int_product_id == vm.productToAdd.int_product_id){
+
+                            product.int_current_value   =   data.inventory.int_current_value;
+
+                        }
+
+                    });
                     vm.productToAdd         =   null;
 
                 },

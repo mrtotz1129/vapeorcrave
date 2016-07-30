@@ -16,17 +16,15 @@
                         <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 229px;" aria-label="AssetCode: activate to sort column ascending">Brand Name</th>
                         <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 194px;" aria-label="NewAssetCode: activate to sort column ascending">Category</th>
                         <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Product Name</th>
-                        <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Equipment: activate to sort column ascending">Price</th>
                         <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Stocks</th>
                         <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Options</th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="product in products">
-                        <td><p>@{{ product.str_product_name }}</p></td>
+                        <td><p>@{{ product.str_brand_name }}</p></td>
                         <td><p>@{{ product.str_category_name }}</p></td>
-                        <td><p>@{{ product.str_volume_name }}</p></td>
-                        <td><p>@{{ product.int_nicotine_level }}</p></td>
-                        <td><p>1</p></td>
+                        <td><p>@{{ product.str_product_name }}</p></td>
+                        <td><p>@{{ product.int_current_value }}</p></td>
                         <td><a><button ng-click="addInventory(product, $index)" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalInventory">
                                     <i class="glyphicon glyphicon-plus"></i> Add</button></a></td>
                     </tr>
@@ -59,8 +57,8 @@
                                             <p>@{{ productToAdd.str_brand_name }}</p>
                                             <p>@{{ productToAdd.str_category_name }}</p>
                                             <p>@{{ productToAdd.str_product_name }}</p>
-                                            <p>0</p>
-                                            <input ng-model="productToAdd.int_quantity" type="integer" class="form-control" id="category_name" placeholder="Input Quantity">
+                                            <p>@{{ productToAdd.int_current_value }}</p>
+                                            <input ng-model="productToAdd.int_quantity" ui-number-mask="0" type="text" class="form-control" id="category_name" placeholder="Input Quantity">
                                         </div>
                                     </div>
                                     <br>
@@ -69,7 +67,7 @@
                                             <p>Latest stock</p>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>0</p>
+                                            <p>@{{ productToAdd.int_current_value + productToAdd.int_quantity }}</p>
                                         </div>
                                     </div>
                                 </div>

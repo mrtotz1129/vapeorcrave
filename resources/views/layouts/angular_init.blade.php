@@ -4,7 +4,8 @@
 	var baseUrl     =   'http://localhost:8000/vapeorcrave/api/';
 
 	angular.module('app', [
-	    'ngResource'
+	    'ngResource',
+        'ui.utils.masks'
 	])
 	    .constant('appSettings', {
 	        baseUrl     :   baseUrl,

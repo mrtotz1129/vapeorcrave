@@ -79,9 +79,9 @@ Route::group(['prefix' => 'vapeorcrave/api'], function() {
         Route::resource('prices', 'Api\\PriceApi');
         Route::group(['prefix' => 'products'], function() {
             Route::get('inventories', 'Api\\ProductApi@getProductInventories');
-            Route::get('{id}/inventories', 'Api\\ProductApi@storeProductInventories');
-            Route::resource('/', 'Api\\ProductApi');
+            Route::post('{id}/inventories', 'Api\\ProductApi@storeProductInventories');
         });
+        Route::resource('products', 'Api\\ProductApi');
         Route::resource('users', 'Api\\UserApi');
         Route::resource('volumes', 'Api\\VolumeApi');
     });

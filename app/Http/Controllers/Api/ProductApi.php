@@ -228,14 +228,24 @@ class ProductApi extends Controller
     {
         $productInventory = $this->queryInventory($id);
 
-        Inventory::create(array(
+        $inventory          =   Inventory::create(array(
             'int_branch_id_fk'  => $request->int_branch_id,
-            'int_product_id_fk' => $request->int_product_id,
+            'int_product_id_fk' => $id,
             'int_prev_value'    => !$productInventory ? 0 : $productInventory->int_current_value,
-            'int_current_value' => $productInventory->int_current_value + $request->int_quantity,
+            'int_current_value' => !$productInventory ? $request->int_quantity : $productInventory->int_current_value + $request->int_quantity,
             'bool_is_consigned' => false,   // for now
             'int_user_id_fk'    => 1,       // for now
+            'int_branch_id_fk'  => 1,
         ));
+
+        return response()
+            ->json(
+                array(
+                    'message'       =>  'Inventory stock is successfully updated.',
+                    'inventory'     =>  $inventory
+                ),
+                200
+            );
     }
 
      public function queryInventory($id) 
@@ -244,14 +254,23 @@ class ProductApi extends Controller
             ->rightJoin('products', 'inventories.int_product_id_fk', '=', 'products.int_product_id')
             ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
             ->join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
-            ->select('inventories.int_inventory_id', 'brands.str_brand_name', 'categories.str_category_name', 'products.str_product_name', 'inventories.int_current_value', 'inventories.int_product_id_fk');
+            ->select('inventories.int_inventory_id',
+                'brands.str_brand_name',
+                'categories.str_category_name',
+                'products.str_product_name',
+                'inventories.int_current_value',
+                'inventories.int_product_id_fk',
+                'products.int_product_id');
 
         if($id) {
             $resultQuery = $inventoryQuery->where('inventories.int_product_id_fk', '=', $id)
                 ->orderBy('inventories.created_at', 'DESC')
                 ->first();
         } else {
-            $resultQuery = $inventoryQuery->get();
+            $resultQuery = $inventoryQuery
+                ->orderBy('inventories.created_at', 'desc')
+                ->groupBy('products.int_product_id', 'branches.int_branch_id')
+                ->get();
         }
 
         return $resultQuery;
