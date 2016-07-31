@@ -15,12 +15,13 @@ class CreateTableSalesInvoiceDetail extends Migration
         Schema::create('sales_invoice_details', function(Blueprint $table){
 
             $table->increments('int_sales_invoice_detail_id');
+            $table->integer('int_sales_invoice_id_fk')
+                ->unsigned();
             $table->integer('int_product_id_fk')
                 ->unsigned();
             $table->integer('int_price_id_fk')
                 ->unsigned();
             $table->integer('int_quantity');
-            $table->timestamps();
 
             $table->foreign('int_product_id_fk')
                 ->references('int_product_id')
@@ -29,6 +30,10 @@ class CreateTableSalesInvoiceDetail extends Migration
             $table->foreign('int_price_id_fk')
                 ->references('int_price_id')
                 ->on('prices');
+
+            $table->foreign('int_sales_invoice_id_fk')
+                ->references('int_sales_invoice_id')
+                ->on('sales_invoices');
 
         });
     }
