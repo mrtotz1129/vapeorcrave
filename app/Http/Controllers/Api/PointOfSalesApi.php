@@ -48,7 +48,7 @@ class PointOfSalesApi extends Controller
 
             $salesInvoice = SalesInvoice::create(array(
                 'deci_amount_paid'  => $request->deci_amount_paid,
-                'int_user_id_fk'    => $request->int_user_id_fk,
+                'int_user_id_fk'    => Auth::user()->id,
                 'str_remarks'       => $request->str_remarks
             ));
 
