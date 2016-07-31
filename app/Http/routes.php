@@ -11,60 +11,62 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-Route::get('index', function () {
-    return view('index');
-});
+    Route::get('index', function () {
+        return view('index');
+    });
 
-Route::get('product_add' , function(){
-    return view('product_add');
-});
+    Route::get('product_add' , function(){
+        return view('product_add');
+    });
 
-Route::get('dashboard' , function(){
-    return view('dashboard');
-});
+    Route::get('dashboard' , function(){
+        return view('dashboard');
+    });
 
-Route::get('maintenance_brand' , function(){
-    return view('maintenance_brand');
-});
+    Route::get('maintenance_brand' , function(){
+        return view('maintenance_brand');
+    });
 
-Route::get('maintenance_category' , function(){
-    return view('maintenance_category');
-});
+    Route::get('maintenance_category' , function(){
+        return view('maintenance_category');
+    });
 
-Route::get('maintenance_volume' , function(){
-    return view('maintenance_volume');
-});
+    Route::get('maintenance_volume' , function(){
+        return view('maintenance_volume');
+    });
 
-Route::get('maintenance_nicotine' , function(){
-    return view('maintenance_nicotine');
-});
+    Route::get('maintenance_nicotine' , function(){
+        return view('maintenance_nicotine');
+    });
 
-Route::get('maintenance_product' , function(){
-    return view('maintenance_product');
-});
+    Route::get('maintenance_product' , function(){
+        return view('maintenance_product');
+    });
 
-Route::get('maintenance_position' , function(){
-    return view('maintenance_position');
-});
+    Route::get('maintenance_position' , function(){
+        return view('maintenance_position');
+    });
 
-Route::get('maintenance_branch' , function(){
-    return view('maintenance_branch');
-});
+    Route::get('maintenance_branch' , function(){
+        return view('maintenance_branch');
+    });
 
-Route::get('maintenance_users' , function(){
-    return view('maintenance_users');
-});
+    Route::get('maintenance_users' , function(){
+        return view('maintenance_users');
+    });
 
-Route::get('transaction' , function(){
-    return view('transaction');
-});
+    Route::get('transaction' , function(){
+        return view('transaction');
+    });
 
-Route::get('pointofsales' , function(){
-    return view('pointofsales');
+    Route::get('pointofsales' , function(){
+        return view('pointofsales');
+    });
 });
 
 Route::group(['prefix' => 'vapeorcrave/api'], function() {
@@ -86,4 +88,3 @@ Route::group(['prefix' => 'vapeorcrave/api'], function() {
         Route::resource('volumes', 'Api\\VolumeApi');
     });
 });
-

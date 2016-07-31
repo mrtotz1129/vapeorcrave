@@ -57,7 +57,8 @@ class ProductApi extends Controller
                 'int_brand_id_fk'           => $request->int_brand_id_fk,
                 'int_volume_id_fk'          => $request->int_volume_id_fk,
                 'int_nicotine_id_fk'        => $request->int_nicotine_id_fk,
-                'str_product_photo_path'    => 'kahit ano' // for now
+                'str_product_photo_path'    => 'kahit ano', // for now
+                ''
             ));
 
             $price                          = Price::create(array(
