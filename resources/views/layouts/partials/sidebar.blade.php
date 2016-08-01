@@ -36,7 +36,7 @@
             <li class="active"><a href="{{ url('home') }}" class="{!! Request::url() == url('home') ? 'active' : '' !!}"><i class='fa fa-link'></i> Dashboard</a></li>
             <li><a href="#"><i class='fa fa-link'></i>Sell</a></li>
             <li class="treeview {!! strpos(Request::url(), 'maintenance') == true ? 'active' : '' !!}">
-                <a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Maintenance</a>
+                <a href="#"><i class='glyphicon glyphicon-cog'></i><i class="fa fa-angle-left pull-right"></i>Maintenance</a>
                 <ul class="treeview-menu">
                     <li class="{!! Request::url() == url('maintenance_brand') ? 'active' : '' !!}"><a href="{!! url('maintenance_brand') !!}">Brand</a></li>
                     <li class="{!! Request::url() == url('maintenance_category') ? 'active' : '' !!}"><a href="{!! url('maintenance_category') !!}">Category</a></li>
@@ -48,12 +48,14 @@
                     <li class="{!! Request::url() == url('maintenance_users') ? 'active' : '' !!}"><a href="{!! url('maintenance_users') !!}">User</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Transaction</a>
+            <li class="treeview"><a href="#"><i class='glyphicon glyphicon-usd'></i><i class="fa fa-angle-left pull-right"></i>Transaction</a>
                 <ul class="treeview-menu">
                     <li class="{!! Request::url() == url('transaction') ? 'active' : '' !!}"><a href="{!! url('transaction') !!}">Inventory</a></li>
                     <li class="{!! Request::url() == url('pointofsales') ? 'active' : '' !!}"><a href="{!! url('pointofsales') !!}">Point of Sales</a></li>
                 </ul>
             </li>
+            <li class="{!! Request::url() == url('reports') ? 'active' : '' !!}"><a href="{!! url('reports') !!}"><i class='glyphicon glyphicon-list-alt'></i>Reports</a></li>
+            <li class="{!! Request::url() == url('queries') ? 'active' : '' !!}"><a href="{!! url('queries') !!}"><i class='fa fa-link'></i>Queries</a></li>
             <li><a href="#"><i class='fa fa-link'></i>History</a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Location</a>

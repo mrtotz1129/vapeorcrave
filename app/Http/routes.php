@@ -67,6 +67,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('pointofsales' , function(){
         return view('pointofsales');
     });
+
+    Route::get('reports' , function(){
+        return view('reports');
+    });
+
+    Route::get('queries' , function(){
+        return view('queries');
+    });
 });
 
 Route::group(['prefix' => 'vapeorcrave/api'], function() {
