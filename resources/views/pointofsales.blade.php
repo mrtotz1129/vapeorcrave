@@ -77,6 +77,7 @@
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Category</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Equipment: activate to sort column ascending">Volume</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Nicotine Level</th>
+                                                <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Available Stocks</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Department: activate to sort column ascending">Price</th>
                                                 <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Options</th>
                                             </thead>
@@ -87,6 +88,7 @@
                                                 <td><p>@{{ product.str_category_name }}</p></td>
                                                 <td><p>@{{ product.str_volume_name }}</p></td>
                                                 <td><p>@{{ product.int_nicotine_level }}</p></td>
+                                                <td><p>@{{ product.int_current_value }}</p></td>
                                                 <td><p>@{{ product.deci_price | currency: 'P' }}</p></td>
                                                 <td><a><button ng-click="openAddToCart(product, $index)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#addToCart">
                                                             <i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart</button></a></td>
@@ -305,7 +307,7 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Official Receipt</h4>
                         </div>
-                        <form ng-submit="saveUpdate()" autocomplete="off">
+                        <form ng-submit="processPayment()" autocomplete="off">
                             <div class="modal-body">
                                 <div class="row">
                                     <table id="inventory" class="table table-bordered table-responsive dataTable" role="grid" aria-describedBy="inventory_info">

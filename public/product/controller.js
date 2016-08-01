@@ -113,6 +113,7 @@ angular.module('app')
 
                 vm.updateProduct            =   data.selected_product_details;
                 vm.updateProduct.index      =   index;
+                console.log(vm.updateProduct);
 
             });
 

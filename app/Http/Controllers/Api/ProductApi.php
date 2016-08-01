@@ -255,22 +255,43 @@ class ProductApi extends Controller
             ->rightJoin('products', 'inventories.int_product_id_fk', '=', 'products.int_product_id')
             ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
             ->join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
+            ->join('volumes', 'volumes.int_volume_id', '=', 'products.int_volume_id_fk')
+            ->join('nicotines', 'nicotines.int_nicotine_id', '=', 'products.int_nicotine_id_fk')
+            ->join('prices', 'prices.int_product_id_fk', '=', 'products.int_product_id')
             ->select('inventories.int_inventory_id',
                 'brands.str_brand_name',
                 'categories.str_category_name',
                 'products.str_product_name',
                 'inventories.int_current_value',
                 'inventories.int_product_id_fk',
-                'products.int_product_id');
+                'products.int_product_id',
+                'prices.int_price_id',
+                'prices.deci_price',
+                'volumes.str_volume_name', 
+                'nicotines.int_nicotine_level');
+
+        // $inventoryQuery =   Product::join('brands', 'brands.int_brand_id', '=', 'products.int_brand_id_fk')
+        //     ->join('categories', 'categories.int_category_id', '=', 'products.int_category_id_fk')
+        //     ->leftJoin('inventories', 'inventories.int_inventory_id', '=', 'products.int_inventory_id_fk')
+        //     ->leftJoin('branches', 'branches.int_branch_id', '=', 'inventories.int_branch_id_fk')
+        //     ->select('inventories.int_inventory_id',
+        //         'brands.str_brand_name',
+        //         'categories.str_category_name',
+        //         'products.str_product_name',
+        //         'inventories.int_current_value',
+        //         'inventories.int_product_id_fk',
+        //         'products.int_product_id');
 
         if($id) {
             $resultQuery = $inventoryQuery->where('inventories.int_product_id_fk', '=', $id)
                 ->orderBy('inventories.created_at', 'DESC')
+                ->orderBy('prices.created_at', 'DESC')
                 ->first();
         } else {
             $resultQuery = $inventoryQuery
                 ->orderBy('inventories.created_at', 'desc')
-                ->groupBy('products.int_product_id', 'branches.int_branch_id')
+                ->orderBy('prices.created_at', 'DESC')
+                ->groupBy('products.int_product_id', 'branches.int_branch_id', 'prices.int_price_id')
                 ->get();
         }
 
