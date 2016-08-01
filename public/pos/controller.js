@@ -7,16 +7,18 @@ angular.module('app')
 
         vm.cartProducts     =   [];
         
-        var Products        =   $resource(appSettings.baseUrl+'v1/products', {}, {
+        var Products        =   $resource(appSettings.baseUrl+'v1/products/inventories', {}, {
             query       :   {
                 method  :   'GET',
                 isArray :   false
             }
         });
 
+        var POS             =   $resource(appSettings.baseUrl+'v1/point-of-sales', {} );
+
         Products.query().$promise.then(function(data){
 
-            vm.products             =   $filter('orderBy')(data.active_products, 'str_product_name', false);
+            vm.products             =   $filter('orderBy')(data.inventories, 'str_product_name', false);
         });
 
         var copyProduct             =   function(product){
@@ -30,6 +32,7 @@ angular.module('app')
             newProduct.str_volume_name      =   product.str_volume_name;
             newProduct.str_product_name     =   product.str_product_name;
             newProduct.int_nicotine_level   =   product.int_nicotine_level;
+            newProduct.int_price_id         =   product.int_price_id;
 
             return newProduct;
 
@@ -82,6 +85,53 @@ angular.module('app')
             });
 
             vm.deciTotalPrice       =   deciTotalPrice;
+
+        }
+
+        vm.processPayment           =   function(){
+
+            var validate            =   false;
+            var message             =   null;
+
+            if (vm.deciTotalPrice > vm.checkout.deci_amount_paid){
+
+                validate            =   true;
+                message             =   'Amount to pay is greater than amount paid.';
+
+            }
+
+            if (validate){
+
+                alert(message);
+
+            }else{
+
+                vm.checkout.products    =   vm.cartProducts;
+                var transaction         =   new POS(vm.checkout);
+                transaction.$save(function(data, response){
+
+                    alert(data.message);
+                    $('#checkoutmodal').modal('hide');
+                    vm.checkout         =   null;
+                    vm.cartProducts     =   null;
+                    vm.cartProducts     =   [];
+
+                },
+                    function(response){
+
+                        if (response.status == 404){
+
+                            alert('Page not found.');
+
+                        }else if (response.status == 500){
+
+                            alert(response.data.message);
+
+                        }
+
+                    });
+
+            }
 
         }
 

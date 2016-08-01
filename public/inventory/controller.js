@@ -31,10 +31,24 @@ angular.module('app')
 
         });
 
+        var copyProduct        =   function(productToCopy, index){
+
+            var newProduct                  =   {};
+
+            newProduct.str_product_name     =   productToCopy.str_product_name;
+            newProduct.int_product_id       =   productToCopy.int_product_id;
+            newProduct.str_brand_name       =   productToCopy.str_brand_name;
+            newProduct.int_current_value    =   productToCopy.int_current_value;
+            newProduct.str_category_name    =   productToCopy.str_category_name;
+            newProduct.index                =   index;
+
+            return newProduct;
+
+        }
+
         vm.addInventory             =   function(product, index){
 
-            product.index           =   index;
-            vm.productToAdd         =   product;
+            vm.productToAdd         =   copyProduct(product, index);
 
         }
 

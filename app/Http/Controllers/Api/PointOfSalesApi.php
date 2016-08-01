@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+    
 use DB;
+use Auth;
 
 use App\SalesInvoice;
 use App\SalesInvoiceDetail;
@@ -55,13 +56,21 @@ class PointOfSalesApi extends Controller
             foreach($request->products as $product) {
                 SalesInvoiceDetail::create(array(
                     'int_sales_invoice_id_fk'   => $salesInvoice->int_sales_invoice_id,
-                    'int_product_id_fk'         => $product['productId'],
-                    'int_price_id_fk'           => $product['priceId'],
-                    'int_quantity'              => $product['quantity']
+                    'int_product_id_fk'         => $product['int_product_id'],
+                    'int_price_id_fk'           => $product['int_price_id'],
+                    'int_quantity'              => $product['int_quantity']
                 ));
             }
 
             DB::commit();
+            return response()
+                ->json(
+                        array(
+                                'message'       =>  'Transaction successful.'
+                            ),
+                        201
+                    );
+
         } catch(Exception $ex) {
             DB::rollBack();
         }
