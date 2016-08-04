@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('side-bar')
+@section('sidebar')
 
 @endsection
 
 @section('main-content')
 
-    <h4><label>Queries</label></h4>
+    <h4><label>Cubao Branch</label></h4>
     <h5><label>Filters</label></h5>
     <div class="row">
         <div class="col-md-3">
@@ -24,12 +24,6 @@
         <div class="col-md-3">
             <select ng-model="newProduct.int_category_id_fk" class="form-control">
                 <option value="" disabled>Item Name</option>
-                <option ng-repeat="category in categories" value="@{{ category.int_category_id }}">@{{ category.str_category_name }}</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select ng-model="newProduct.int_category_id_fk" class="form-control">
-                <option value="" disabled>Location</option>
                 <option ng-repeat="category in categories" value="@{{ category.int_category_id }}">@{{ category.str_category_name }}</option>
             </select>
         </div>
@@ -64,15 +58,15 @@
         <div class="col-md-12">
             <table class="table table-bordered table-responsive">
                 <thead>
-                    <th data-field="">Brand</th>
-                    <th data-field="">Category</th>
-                    <th data-field="">Item No.</th>
-                    <th data-field="">Item Name</th>
-                    <th data-field="">Volume</th>
-                    <th data-field="">Nicotine Level</th>
-                    <th data-field="">Price</th>
-                    <th data-field="">Remaining Stocks</th>
-                    <th data-field="">Location</th>
+                <th data-field="">Brand</th>
+                <th data-field="">Category</th>
+                <th data-field="">Item No.</th>
+                <th data-field="">Item Name</th>
+                <th data-field="">Volume</th>
+                <th data-field="">Nicotine Level</th>
+                <th data-field="">Price</th>
+                <th data-field="">Remaining Stocks</th>
+                <th data-field="">Location</th>
                 </thead>
                 <tbody>
                 <tr>
@@ -128,5 +122,4 @@
             </div>
         </div>
     </div>
-
 @endsection

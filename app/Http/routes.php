@@ -64,6 +64,10 @@ Route::group(['middleware' => 'auth'], function() {
         return view('transaction');
     });
 
+    Route::get('transaction_history' , function(){
+        return view('transaction_history');
+    });
+
     Route::get('pointofsales' , function(){
         return view('pointofsales');
     });
@@ -74,6 +78,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('queries' , function(){
         return view('queries');
+    });
+
+    Route::get('location_cubao' , function(){
+        return view('location_cubao');
     });
 });
 

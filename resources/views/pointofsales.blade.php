@@ -8,6 +8,7 @@
 @section('main-content')
     <script src="{!! asset('/pos/controller.js') !!}"></script>
 
+    <h4><label>Point of Sales</label></h4>
     <div ng-controller="ctrl.pos">
         <h4>Manual Search</h4>
         <div class="row">
@@ -191,7 +192,7 @@
                                                 <td><p>@{{ product.int_nicotine_level }}</p></td>
                                                 <td><p>@{{ product.deci_price * product.int_quantity | currency: 'P' }}</p></td>
                                                 <td><p>@{{ product.int_quantity }}</p></td>
-                                                <td><a><button ng-click="deleteProduct(product, $index)" type="button" class="btn btn-danger">
+                                                <td><a><button ng-click="deleteProduct(product, $index)" type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeToCart">
                                                             <i class="glyphicon glyphicon-trash"></i> Remove to Cart</button></a></td>
                                             </tr>
                                             </tbody>
@@ -292,6 +293,33 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" value="Submit" class="btn btn-warning">Add to Cart</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="removeToCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Add Item to Cart</h4>
+                        </div>
+                        <form ng-submit="addToCart()" autocomplete="off">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class=col-md-6>
+                                        <label for="quantity">Select Quantity</label>
+                                        <input id="quantity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" value="Submit" class="btn btn-warning">Remove to Cart</button>
                             </div>
                         </form>
                     </div>

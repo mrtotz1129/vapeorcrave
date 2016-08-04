@@ -33,8 +33,7 @@
         <ul class="sidebar-menu">
             <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}" class="{!! Request::url() == url('home') ? 'active' : '' !!}"><i class='fa fa-link'></i> Dashboard</a></li>
-            <li><a href="#"><i class='fa fa-link'></i>Sell</a></li>
+            <li class="active"><a href="{{ url('dashboard') }}" class="{!! Request::url() == url('dashboard') ? 'active' : '' !!}"><i class='glyphicon glyphicon-dashboard'></i> Dashboard</a></li>
             <li class="treeview {!! strpos(Request::url(), 'maintenance') == true ? 'active' : '' !!}">
                 <a href="#"><i class='glyphicon glyphicon-cog'></i><i class="fa fa-angle-left pull-right"></i>Maintenance</a>
                 <ul class="treeview-menu">
@@ -55,13 +54,13 @@
                 </ul>
             </li>
             <li class="{!! Request::url() == url('reports') ? 'active' : '' !!}"><a href="{!! url('reports') !!}"><i class='glyphicon glyphicon-list-alt'></i>Reports</a></li>
-            <li class="{!! Request::url() == url('queries') ? 'active' : '' !!}"><a href="{!! url('queries') !!}"><i class='fa fa-link'></i>Queries</a></li>
-            <li><a href="#"><i class='fa fa-link'></i>History</a></li>
+            <li class="{!! Request::url() == url('queries') ? 'active' : '' !!}"><a href="{!! url('queries') !!}"><i class='glyphicon glyphicon-search'></i>Queries</a></li>
+            <li class="{!! Request::url() == url('transaction_history') ? 'active' : '' !!}"><a href="{!! url('transaction_history') !!}"><i class='glyphicon glyphicon-time'></i>History</a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i><i class="fa fa-angle-left pull-right"></i>Location</a>
+                <a href="#"><i class='glyphicon glyphicon-map-marker'></i><i class="fa fa-angle-left pull-right"></i>Location</a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Cubao</a></li>
-                    <li><a href="#">Sampaloc</a></li>
+                    <li class="{!! Request::url() == url('location_cubao') ? 'active' : '' !!}"><a href="{!! url('location_cubao') !!}">Cubao</a></li>
+                    <li class="{!! Request::url() == url('maintenance_users') ? 'active' : '' !!}"><a href="{!! url('maintenance_users') !!}">Sampaloc</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
