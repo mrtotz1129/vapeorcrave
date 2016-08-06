@@ -62,42 +62,99 @@
 
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-bordered table-responsive">
+            <table id="inventory" class="table table-bordered table-striped dataTable" role="grid" aria-describedBy="inventory_info">
                 <thead>
-                    <th data-field="">Brand</th>
-                    <th data-field="">Category</th>
-                    <th data-field="">Item No.</th>
-                    <th data-field="">Item Name</th>
-                    <th data-field="">Volume</th>
-                    <th data-field="">Nicotine Level</th>
-                    <th data-field="">Price</th>
-                    <th data-field="">Remaining Stocks</th>
-                    <th data-field="">Location</th>
+                <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 130px;" aria-sort="ascending" aria-label="ItemID: activate to sort column descending">Brand</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 210px;" aria-label="AssetCode: activate to sort column ascending">Category</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 154px;" aria-label="Original Location: activate to sort column ascending">Item No.</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Equipment: activate to sort column ascending">Item Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Division: activate to sort column ascending">Volume</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 180px;" aria-label="Department: activate to sort column ascending">Nicotine Level</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Price</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Remaining Stocks</th>
+                    <th class="sorting" tabindex="0" aria-controls="inventory" rowspan="1" colspan="1" style="width: 111px;" aria-label="Status: activate to sort column ascending">Location</th>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><p>Watermelon</p></td>
+                    <td><p>Wolves</p></td>
                     <td><p>E-Juice</p></td>
-                    <td>00001</td>
-                    <td>Watermelon</td>
-                    <td>30mL</td>
-                    <td>0</td>
-                    <td>250.00</td>
-                    <td>50</td>
-                    <td>Cubao</td>
+                    <td><p>00001</p></td>
+                    <td><p>Watermelon</p></td>
+                    <td><p>3</p></td>
+                    <td><p>250</p></td>
+                    <td><p>P50.00</p></td>
+                    <td><p>20</p></td>
+                    <td><p>Cubao</p></td>
+                </tr>
+                <tr>
+                    <td><p>Wolves</p></td>
+                    <td><p>E-Juice</p></td>
+                    <td><p>00002</p></td>
+                    <td><p>Earthmelon</p></td>
+                    <td><p>3</p></td>
+                    <td><p>250</p></td>
+                    <td><p>P50.00</p></td>
+                    <td><p>20</p></td>
+                    <td><p>Cubao</p></td>
+                </tr>
+                <tr>
+                    <td><p>Wolves</p></td>
+                    <td><p>E-Juice</p></td>
+                    <td><p>00003</p></td>
+                    <td><p>Windmelon</p></td>
+                    <td><p>3</p></td>
+                    <td><p>250</p></td>
+                    <td><p>P50.00</p></td>
+                    <td><p>20</p></td>
+                    <td><p>Cubao</p></td>
+                </tr>
+                <tr>
+                    <td><p>Wolves</p></td>
+                    <td><p>E-Juice</p></td>
+                    <td><p>00004</p></td>
+                    <td><p>Airrmelon</p></td>
+                    <td><p>3</p></td>
+                    <td><p>250</p></td>
+                    <td><p>P50.00</p></td>
+                    <td><p>20</p></td>
+                    <td><p>Cubao</p></td>
+                </tr>
+                <tr>
+                    <td><p>Wolves</p></td>
+                    <td><p>E-Juice</p></td>
+                    <td><p>00005</p></td>
+                    <td><p>Watermelon</p></td>
+                    <td><p>3</p></td>
+                    <td><p>250</p></td>
+                    <td><p>P50.00</p></td>
+                    <td><p>20</p></td>
+                    <td><p>Cubao</p></td>
                 </tr>
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th  style="width: 130px;" >Brand</th>
+                    <th  style="width: 210px;" >Category</th>
+                    <th  style="width: 194px;" >Item No.</th>
+                    <th  style="width: 154px;" >Item Name</th>
+                    <th  style="width: 111px;" >Volume</th>
+                    <th  style="width: 111px;" >Nicotine Level</th>
+                    <th  style="width: 180px;" >Price</th>
+                    <th  style="width: 111px;" >Remaining Stocks</th>
+                    <th  style="width: 111px;" >Location</th>
+                </tr>
+                </tfoot>
             </table>
         </div>
-
-
+    </div>
+    <div class="row">
         <div class="col-md-5">
             <div id="inventory_info" class="dataTables_info" role="status" aria-live="polite">
                 Showing 1 to 10 of 100 entries
             </div>
         </div>
-
-        <div class="col-md-8 col-md-offset-3">
+        <div class="col-md-5 col-md-push-3">
             <div id="inventory_paginate" class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
                     <li id="inventory_previous" class="paginate_button previous disabled">
@@ -126,6 +183,9 @@
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+
         </div>
     </div>
 

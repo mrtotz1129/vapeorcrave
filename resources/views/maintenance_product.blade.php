@@ -10,52 +10,65 @@
     <div ng-controller="ctrl.product">
         <div class="row">
             <div class="col-md-4">
-                <form ng-submit="saveProduct()" autocomplete="off">
-                    <div class="form-group">
-                        <select ng-model="newProduct.int_category_id_fk" class="form-control">
-                            <option value="" disabled>Category</option>
-                            <option ng-repeat="category in categories" value="@{{ category.int_category_id }}">@{{ category.str_category_name }}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select ng-model="newProduct.int_brand_id_fk" class="form-control">
-                            <option value="" disabled>Brand</option>
-                            <option ng-repeat="brand in brands" value="@{{ brand.int_brand_id }}">@{{ brand.str_brand_name }}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="product_name">Name</label>
-                        <input ng-model="newProduct.str_product_name" type="text" class="form-control" id="product_name" placeholder="Product Name">
-                    </div>
-                    <div class="input-group">
-                        <label for="product_price">Price</label>
-                        <span class="input-group-addon">P</span>
-                        <input ng-model="newProduct.deci_price" id="product_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <span class="input-group-addon">.00</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <input type="file" id="exampleInputFile">
-                        <p class="help-block">Choose a picture for the product</p>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select ng-model="newProduct.int_volume_id_fk" class="form-control">
-                                    <option value="" disabled>Volume</option>
-                                    <option ng-repeat="volume in volumes" value="@{{ volume.int_volume_id }}">@{{ volume.str_volume_name }}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
-                                    <option value="" disabled>Nicotine</option>
-                                    <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
-                                </select>
-                            </div>
+                <div class="box box-success collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Product</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                    <div class="box-body">
+                        <form ng-submit="saveProduct()" autocomplete="off">
+                            <div class="form-group">
+                                <select ng-model="newProduct.int_category_id_fk" class="form-control">
+                                    <option value="" disabled>Category</option>
+                                    <option ng-repeat="category in categories" value="@{{ category.int_category_id }}">@{{ category.str_category_name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select ng-model="newProduct.int_brand_id_fk" class="form-control">
+                                    <option value="" disabled>Brand</option>
+                                    <option ng-repeat="brand in brands" value="@{{ brand.int_brand_id }}">@{{ brand.str_brand_name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product_name">Name</label>
+                                <input ng-model="newProduct.str_product_name" type="text" class="form-control" id="product_name" placeholder="Product Name">
+                            </div>
+                            <div class="input-group">
+                                <label for="product_price">Price</label>
+                                <span class="input-group-addon">P</span>
+                                <input ng-model="newProduct.deci_price" id="product_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Choose a picture for the product</p>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select ng-model="newProduct.int_volume_id_fk" class="form-control">
+                                            <option value="" disabled>Volume</option>
+                                            <option ng-repeat="volume in volumes" value="@{{ volume.int_volume_id }}">@{{ volume.str_volume_name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
+                                            <option value="" disabled>Nicotine</option>
+                                            <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-8">

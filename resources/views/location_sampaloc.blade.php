@@ -6,7 +6,7 @@
 
 @section('main-content')
 
-    <h4><label>Cubao Branch</label></h4>
+    <h4><label>Sampaloc Branch</label></h4>
     <h5><label>Filters</label></h5>
     <div class="row">
         <div class="col-md-3">

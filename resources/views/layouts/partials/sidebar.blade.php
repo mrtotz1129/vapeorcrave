@@ -60,7 +60,7 @@
                 <a href="#"><i class='glyphicon glyphicon-map-marker'></i><i class="fa fa-angle-left pull-right"></i>Location</a>
                 <ul class="treeview-menu">
                     <li class="{!! Request::url() == url('location_cubao') ? 'active' : '' !!}"><a href="{!! url('location_cubao') !!}">Cubao</a></li>
-                    <li class="{!! Request::url() == url('maintenance_users') ? 'active' : '' !!}"><a href="{!! url('maintenance_users') !!}">Sampaloc</a></li>
+                    <li class="{!! Request::url() == url('location_sampaloc') ? 'active' : '' !!}"><a href="{!! url('location_sampaloc') !!}">Sampaloc</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

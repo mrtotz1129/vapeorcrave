@@ -10,13 +10,28 @@
     <div ng-controller="ctrl.nicotine">
         <div class="row">
             <div class="col-md-4">
-                <form ng-submit="saveNicotine()" autocomplete="off">
-                    <div class="form-group">
-                        <label for="product_nicotine">Nicotine Level</label>
-                        <input ng-model="newNicotine.int_nicotine_level" type="integer" class="form-control" id="product_nicotine" placeholder="Nicotine Level">
+                <div class="box box-success collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Nicotine Level</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                    <div class="box-body">
+                        <form ng-submit="saveNicotine()" autocomplete="off">
+                            <div class="form-group">
+                                <label for="product_nicotine">Nicotine Level</label>
+                                <input ng-model="newNicotine.int_nicotine_level" type="integer" class="form-control" id="product_nicotine" placeholder="Nicotine Level">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+
             </div>
 
             <div class="col-md-8">

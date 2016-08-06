@@ -7,37 +7,49 @@
 @section('main-content')
     <div class="row">
         <div class="col-md-4">
-            <form>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Fullname">
+            <div class="box box-success collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add User</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+                <div class="box-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Fullname">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="passwor">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
+                                <option value="" disabled>Postion Type</option>
+                                <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
+                                <option value="" disabled>Branch</option>
+                                <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <label for="passwor">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
-                        <option value="" disabled>Postion Type</option>
-                        <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select ng-model="newProduct.int_nicotine_id_fk" class="form-control">
-                        <option value="" disabled>Branch</option>
-                        <option ng-repeat="nicotine in nicotines" value="@{{ nicotine.int_nicotine_id }}">@{{ nicotine.int_nicotine_level }}</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            </div>
         </div>
 
         <div class="col-md-8">

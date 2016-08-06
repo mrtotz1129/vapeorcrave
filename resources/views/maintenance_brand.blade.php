@@ -8,20 +8,34 @@
     <script src="{!! asset('/brand/controller.js') !!}"></script>
 
     <div ng-controller="ctrl.brand">
+
         <div class="row">
+
             <div class="col-md-4">
-                <form ng-submit="saveBrand()" autocomplete="off">
-                    <div class="form-group">
-                        <label for="product_brand">Brand</label>
-                        <input ng-model="newBrand.str_brand_name" type="text" class="form-control" id="product_brand" placeholder="Product Brand">
+                <div class="box box-success collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Brand</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <input type="file" id="exampleInputFile">
-                        <p class="help-block">Choose a logo for the brand</p>
+                    <div class="box-body">
+                        <form ng-submit="saveBrand()" autocomplete="off">
+                            <div class="form-group">
+                                <label for="product_brand">Brand</label>
+                                <input ng-model="newBrand.str_brand_name" type="text" class="form-control" id="product_brand" placeholder="Product Brand">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Choose a logo for the brand</p>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                </div>
             </div>
 
             <div class="col-md-8">

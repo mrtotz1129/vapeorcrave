@@ -83,6 +83,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('location_cubao' , function(){
         return view('location_cubao');
     });
+
+    Route::get('location_sampaloc' , function(){
+        return view('location_sampaloc');
+    });
 });
 
 Route::group(['prefix' => 'vapeorcrave/api'], function() {

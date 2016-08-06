@@ -7,16 +7,152 @@
 
 @section('main-content')
 
+
+        <div class=row>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="info-box bg-black">
+                            <span class="info-box-icon bg-green">
+                            <i class="fa fa-bar-chart"></i>
+                            </span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Sales</span>
+                                <span class="info-box-number">41,410</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
+                                <span class="progress-description"> 70% Increase in 30 Days </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="info-box bg-black">
+                            <span class="info-box-icon bg-green">
+                            <i class="fa fa-usd"></i>
+                            </span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Item Sold</span>
+                                <span class="info-box-number">41,410</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 30%"></div>
+                                </div>
+                                <span class="progress-description"> 70% Increase in 30 Days </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="info-box bg-black">
+                            <span class="info-box-icon bg-green">
+                            <i class="fa fa-tags"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Inventory</span>
+                                <span class="info-box-number">250</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="box box-success" style="position: relative; left: 0px; top: 0px;">
+                    <div class="box-header ui-sortable-handle bg-green" style="cursor: move;">
+                        <i class="fa fa-exclamation"></i>
+                        <h3 class="box-title">Stocks Running Low</h3>
+                        <div class="box-tools pull-right">
+                            <ul class="pagination pagination-sm inline">
+                                <li>
+                                    <a href="#">«</a>
+                                </li>
+                                <li>
+                                    <a href="#">1</a>
+                                </li>
+                                <li>
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                                <li>
+                                    <a href="#">»</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <ul class="todo-list ui-sortable">
+                            <li>
+                                <span class="handle ui-sortable-handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                    <span class="text">Watermelon</span>
+                                    <small class="label label-danger">
+                                        10 available stocks
+                                    </small>
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                            </li>
+                            <li>
+                                <span class="handle ui-sortable-handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                    <span class="text">Lucifer</span>
+                                    <small class="label label-danger">
+                                        3 available stocks
+                                    </small>
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                            </li>
+                            <li>
+                                <span class="handle ui-sortable-handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <input type="checkbox" value="">
+                                    <span class="text">Drips Ahoy</span>
+                                    <small class="label label-danger">
+                                        5 available stocks
+                                    </small>
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-footer clearfix no-border">
+                        <button class="btn btn-success pull-right" type="button">
+                            <i class="fa fa-plus"></i>
+                            Add Stocks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="col-md-7">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
+            <div class="col-md-6">
+                <div class="box box-success">
+                    <div class="box-header with-border bg-green">
+                        <i class="fa fa-plus-square"></i>
                         <h3 class="box-title">Recently Added Products</h3>
                         <div class="box-tools pull-right">
-                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                            <button class="btn bg-green btn-sm" data-widget="collapse" type="button">
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <button class="btn btn-box-tool" data-widget="remove" type="button">
+                            <button class="btn bg-green btn-sm" data-widget="remove" type="button">
                                 <i class="fa fa-times"></i>
                             </button>
                         </div>
@@ -78,43 +214,92 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="info-box bg-black">
-                            <span class="info-box-icon bg-green">
-                            <i class="fa fa-bar-chart"></i>
-                            </span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Sales</span>
-                                <span class="info-box-number">41,410</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
+
+            <div class="col-md-6">
+                <div class="box box-solid bg-teal-gradient" style="position: relative; left: 0px; top: 0px;">
+                    <div class="box-header ui-sortable-handle bg-green" style="cursor: move;">
+                        <i class="fa fa-money"></i>
+                        <h3 class="box-title">Top Sellers</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-green btn-sm" data-widget="collapse" type="button">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button class="btn bg-green btn-sm" data-widget="remove" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none bg-black">
+                        <div id="line-chart" class="chart" style="height: 250px;">
+                            <svg height="250" version="1.1" width="416" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; left: -0.75px; top: -0.383362px;">
+                                <desc>Created with Raphaël 2.1.0</desc>
+                                <defs>
+                                    <text style="text-anchor: end; font: 10px Open Sans;" x="43.5" y="213" text-anchor="end" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal">
+                                    <tspan dy="3.5">0</tspan>
+                                    </text>
+                                    <path style="" fill="none" stroke="#efefef" d="M56,213H391" stroke-width="0.4">
+                                        <text style="text-anchor: end; font: 10px Open Sans;" x="43.5" y="166" text-anchor="end" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal">
+                                        <tspan dy="3.5">5,000</tspan>
+                                        </text>
+                                        <path style="" fill="none" stroke="#efefef" d="M56,166H391" stroke-width="0.4">
+                                            <text style="text-anchor: end; font: 10px Open Sans;" x="43.5" y="119" text-anchor="end" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal">
+                                            <tspan dy="3.5">10,000</tspan>
+                                            </text>
+                                            <path style="" fill="none" stroke="#efefef" d="M56,119H391" stroke-width="0.4">
+                                                <text style="text-anchor: end; font: 10px Open Sans;" x="43.5" y="72" text-anchor="end" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal">
+                                                <tspan dy="3.5">15,000</tspan>
+                                                </text>
+                                                <path style="" fill="none" stroke="#efefef" d="M56,72H391" stroke-width="0.4">
+                                                    <text style="text-anchor: end; font: 10px Open Sans;" x="43.5" y="25" text-anchor="end" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal">
+                                                    <tspan dy="3.5">20,000</tspan>
+                                                    </text>
+                                                    <path style="" fill="none" stroke="#efefef" d="M56,25H391" stroke-width="0.4">
+                                                        <text style="text-anchor: middle; font: 10px Open Sans;" x="329.53584447144596" y="225.5" text-anchor="middle" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+                                                        <tspan dy="3.5">2013</tspan>
+                                                        </text>
+                                                        <text style="text-anchor: middle; font: 10px Open Sans;" x="180.55650060753342" y="225.5" text-anchor="middle" font="10px "Arial"" stroke="none" fill="#ffffff" font-size="10px" font-family="Open Sans" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+                                                        <tspan dy="3.5">2012</tspan>
+                                                        </text>
+                                                        <path style="" fill="none" stroke="#efefef" d="M56,187.93959999999998C65.36208991494533,187.6764,84.08626974483596,189.52585,93.44835965978129,186.8868C102.81044957472662,184.24775,121.53462940461725,167.99562513661203,130.89671931956258,166.8272C140.15704738760633,165.67147513661203,158.67770352369382,179.82035,167.93803159173757,177.59019999999998C177.19835965978132,175.36004999999997,195.71901579586878,151.209806284153,204.97934386391253,148.986C214.34143377885786,146.737756284153,233.0656136087485,157.36375,242.42770352369382,159.702C251.78979343863915,162.04025000000001,270.5139732685298,178.80089945355192,279.87606318347514,167.692C289.1363912515189,156.70384945355192,307.6570473876063,78.24561187845302,316.9173754556501,71.31379999999999C326.07594167679224,64.45816187845301,344.3930741190766,104.82477417582416,353.55164034021874,112.5422C362.91373025516407,120.43112417582417,381.63791008505467,128.43994999999998,391,133.73919999999998" stroke-width="2">
+                                                            <circle cx="56" cy="187.93959999999998" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                <circle cx="93.44835965978129" cy="186.8868" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                    <circle cx="130.89671931956258" cy="166.8272" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                        <circle cx="167.93803159173757" cy="177.59019999999998" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                            <circle cx="204.97934386391253" cy="148.986" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                                <circle cx="242.42770352369382" cy="159.702" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                                    <circle cx="279.87606318347514" cy="167.692" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                                        <circle cx="316.9173754556501" cy="71.31379999999999" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                                            <circle cx="353.55164034021874" cy="112.5422" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                                                                                                <circle cx="391" cy="133.73919999999998" r="4" fill="#efefef" stroke="#efefef" style="" stroke-width="1">
+                            </svg>
+                            <div class="morris-hover morris-default-style" style="left: 46.9484px; top: 112px; display: none;">
+                                <div class="morris-hover-row-label">2011 Q2</div>
+                                <div class="morris-hover-point" style="color: #efefef"> Item 1: 2,778 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer no-border">
+                        <div class="row">
+                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                <div style="display:inline;width:60px;height:60px;">
+                                    <canvas width="60" height="60"></canvas>
+                                    <input class="knob" type="text" data-fgcolor="#39CCCC" data-height="60" data-width="60" value="20" data-readonly="true" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px none; background: transparent none repeat scroll 0% 0%; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px;">
                                 </div>
-                                <span class="progress-description"> 70% Increase in 30 Days </span>
+                                <div class="knob-label">Accesories</div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="info-box bg-black">
-                            <span class="info-box-icon bg-green">
-                            <i class="fa fa-tags"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Inventory</span>
-                                <span class="info-box-number">250</span>
+                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                <div style="display:inline;width:60px;height:60px;">
+                                    <canvas width="60" height="60"></canvas>
+                                    <input class="knob" type="text" data-fgcolor="#39CCCC" data-height="60" data-width="60" value="50" data-readonly="true" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px none; background: transparent none repeat scroll 0% 0%; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px;">
+                                </div>
+                                <div class="knob-label">E-Juice</div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="info-box bg-black">
-                            <span class="info-box-icon bg-green">
-                                <i class="fa fa-usd"></i>
-                            </span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Items Sold</span>
-                                <span class="info-box-number">3,652</span>
+                            <div class="col-xs-4 text-center">
+                                <div style="display:inline;width:60px;height:60px;">
+                                    <canvas width="60" height="60"></canvas>
+                                    <input class="knob" type="text" data-fgcolor="#39CCCC" data-height="60" data-width="60" value="30" data-readonly="true" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px none; background: transparent none repeat scroll 0% 0%; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px;">
+                                </div>
+                                <div class="knob-label">Mod</div>
                             </div>
                         </div>
                     </div>

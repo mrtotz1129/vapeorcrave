@@ -7,13 +7,25 @@
 @section('main-content')
     <div class="row">
         <div class="col-md-4">
-            <form>
-                <div class="form-group">
-                    <label for="branch">Branch</label>
-                    <input type="text" class="form-control" id="branch" placeholder="Branch Location">
+            <div class="box box-success collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Branch</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+                <div class="box-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="branch">Branch</label>
+                            <input type="text" class="form-control" id="branch" placeholder="Branch Location">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-8">

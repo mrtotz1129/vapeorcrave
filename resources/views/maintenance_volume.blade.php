@@ -10,13 +10,25 @@
     <div ng-controller="ctrl.volume">
         <div class="row">
             <div class="col-md-4">
-                <form ng-submit="saveVolume()" autocomplete="off">
-                    <div class="form-group">
-                        <label for="product_volume">Volume</label>
-                        <input ng-model="newVolume.str_volume_name" type="text" class="form-control" id="product_volume" placeholder="Volume">
+                <div class="box box-success collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Volume</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                    <div class="box-body">
+                        <form ng-submit="saveVolume()" autocomplete="off">
+                            <div class="form-group">
+                                <label for="product_volume">Volume</label>
+                                <input ng-model="newVolume.str_volume_name" type="text" class="form-control" id="product_volume" placeholder="Volume">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-8">
