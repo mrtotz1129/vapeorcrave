@@ -44,7 +44,7 @@ class PositionApi extends Controller
     {
         $position          =   Position::create(array(
             'str_position_name'     => $request->str_position_name,
-            'int_position_access'   => $request->int_position_access
+            'int_user_access'   => $request->int_user_access
         ));
         
         return response()
