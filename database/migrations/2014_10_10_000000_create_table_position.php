@@ -19,6 +19,7 @@ class CreateTablePosition extends Migration
                 ->unique();
             $table->integer('int_user_access');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

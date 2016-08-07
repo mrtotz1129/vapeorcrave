@@ -65,7 +65,7 @@ angular.module('app')
 
         vm.saveUpdate       =   function(){
 
-            BranchId.update({id : vm.updateBranch.int_branch_id}, vm.updateBrach).$promise.then(function(data){
+            BranchId.update({id : vm.updateBranch.int_branch_id}, vm.updateBranch).$promise.then(function(data){
 
                 alert(data.message);
                 vm.branches.splice(vm.updateBranch.index, 1);

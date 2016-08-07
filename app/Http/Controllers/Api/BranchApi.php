@@ -90,7 +90,7 @@ class BranchApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        $branch = $this->findBrand($id);
+        $branch = $this->findBranch($id);
 
         if(count($branch) > 0) {
             $branch->str_branch_location     = $request->str_branch_location;
@@ -114,7 +114,15 @@ class BranchApi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $branch = $this->findBranch($id);
+        $branch->delete();
+        return response()
+            ->json(
+                    [
+                        'message'       =>  'Branch is successfully deleted.'
+                    ],
+                    201
+                );
     }
 
     public function findBranch($id) {
