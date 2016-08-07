@@ -295,7 +295,7 @@
                                     <p>Discount</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <input ng-model="checkout.deci_amount_paid" class="col-md-12" ui-number-mask="2" type="text" placeholder="5%">
+                                    <input ng-model="checkout.deci_discount" class="col-md-12" ui-number-mask="2" type="text" placeholder="5%">
                                 </div>
                             </div>
                             <div class="row">
