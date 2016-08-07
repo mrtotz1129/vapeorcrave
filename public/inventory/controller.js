@@ -49,6 +49,7 @@ angular.module('app')
         vm.addInventory             =   function(product, index){
 
             vm.productToAdd         =   copyProduct(product, index);
+            console.log(vm.productToAdd);
 
         }
 

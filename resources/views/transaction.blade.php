@@ -7,6 +7,7 @@
 @section('main-content')
     <script src="{!! asset('/inventory/controller.js') !!}"></script>
 
+<div ng-controller='ctrl.inventory'>
     <h4><label>Inventory</label></h4>
 
     <div id="box-body">
@@ -40,7 +41,7 @@
 
                         <br>
 
-                        <div ng-controller="ctrl.inventory">
+                        <div>
                             <table id="inventory" class="table table-bordered table-striped dataTable" role="grid" aria-describedBy="inventory_info">
                                 <thead>
                                 <tr role="row">
