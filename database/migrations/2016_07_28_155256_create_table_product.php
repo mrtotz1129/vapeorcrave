@@ -27,9 +27,6 @@ class CreateTableProduct extends Migration
                 ->unique();
             $table->text('str_product_photo_path')
                 ->nullable();
-            $table->integer('int_price_id_fk')
-                ->unsigned()
-                ->nullable();
             $table->integer('int_inventory_id_fk')
                 ->unsigned()
                 ->nullable();
@@ -51,10 +48,6 @@ class CreateTableProduct extends Migration
             $table->foreign('int_nicotine_id_fk')
                 ->references('int_nicotine_id')
                 ->on('nicotines');
-
-            $table->foreign('int_price_id_fk')
-                ->references('int_price_id')
-                ->on('prices');
 
         });
     }

@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Inventory;
 
+use DB;
+
 class InventoryApi extends Controller
 {
     /**
@@ -99,7 +101,8 @@ class InventoryApi extends Controller
             ->join('products', 'inventories.int_product_id_fk', '=', 'products.int_product_id')
             ->join('categories', 'products.int_category_id_fk', '=', 'categories.int_category_id')
             ->join('brands', 'products.int_brand_id_fk', '=', 'brands.int_brand_id')
-            ->select('inventories.int_inventory_id', 'brands.str_brand_name', 'categories.str_category_name', 'products.str_product_name', 'inventories.int_current_value');
+            ->select('inventories.int_inventory_id', 'brands.str_brand_name', 'categories.str_category_name', 'products.str_product_name', DB::raw('MAX(inventories.int_current_value) as int_current_value'))
+            ->groupBy('inventories.int_product_id_fk');
 
         if($id) {
             $resultQuery = $inventoryQuery->where('inventories.int_inventory_id', '=', $id)
