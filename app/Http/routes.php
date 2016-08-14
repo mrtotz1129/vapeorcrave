@@ -87,24 +87,26 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('location_sampaloc' , function(){
         return view('location_sampaloc');
     });
-});
 
-Route::group(['prefix' => 'vapeorcrave/api'], function() {
-    // API Version 1
-    Route::group(['prefix' => 'v1'], function() {
-        Route::resource('branches', 'Api\\BranchApi');
-        Route::resource('brands', 'Api\\BrandApi');
-        Route::resource('categories', 'Api\\CategoryApi');
-        Route::resource('nicotines', 'Api\\NicotineApi');
-        Route::resource('point-of-sales', 'Api\\PointOfSalesApi');
-        Route::resource('positions', 'Api\\PositionApi');
-        Route::resource('prices', 'Api\\PriceApi');
-        Route::group(['prefix' => 'products'], function() {
-            Route::get('inventories', 'Api\\ProductApi@getProductInventories');
-            Route::post('{id}/inventories', 'Api\\ProductApi@storeProductInventories');
+
+    // Vapeorcrave API
+    Route::group(['prefix' => 'vapeorcrave/api'], function() {
+        // API Version 1
+        Route::group(['prefix' => 'v1'], function() {
+            Route::resource('branches', 'Api\\BranchApi');
+            Route::resource('brands', 'Api\\BrandApi');
+            Route::resource('categories', 'Api\\CategoryApi');
+            Route::resource('nicotines', 'Api\\NicotineApi');
+            Route::resource('point-of-sales', 'Api\\PointOfSalesApi');
+            Route::resource('positions', 'Api\\PositionApi');
+            Route::resource('prices', 'Api\\PriceApi');
+            Route::group(['prefix' => 'products'], function() {
+                Route::get('inventories', 'Api\\ProductApi@getProductInventories');
+                Route::post('{id}/inventories', 'Api\\ProductApi@storeProductInventories');
+            });
+            Route::resource('products', 'Api\\ProductApi');
+            Route::resource('users', 'Api\\UserApi');
+            Route::resource('volumes', 'Api\\VolumeApi');
         });
-        Route::resource('products', 'Api\\ProductApi');
-        Route::resource('users', 'Api\\UserApi');
-        Route::resource('volumes', 'Api\\VolumeApi');
     });
 });
