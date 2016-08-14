@@ -68,10 +68,15 @@ class PointOfSalesApi extends Controller
                     ->orderBy('created_at', 'desc')
                     ->first();
 
-                $inventory->int_prev_value  = $inventory->int_current_value;
-                $inventory->int_current_value  -= (int) $product['int_quantity'];
-
-                $inventory->save();
+                Inventory::create(array(
+                    'int_branch_id_fk'          => $inventory->int_branch_id_fk,
+                    'int_product_id_fk'         => $inventory->int_product_id_fk,
+                    'int_prev_value'            => $inventory->int_current_value,
+                    'int_current_value'         => $inventory->int_current_value - (int) $product['int_quantity'],
+                    'bool_is_consigned'         => $inventory->bool_is_consigned,
+                    'int_user_id_fk'            => $inventory->int_user_id_fk,
+                    'int_sales_invoice_id_fk'   => $inventory->int_sales_invoice_id_fk
+                ));
             }
 
             DB::commit();
