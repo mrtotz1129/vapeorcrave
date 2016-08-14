@@ -11,8 +11,10 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 
+use App\Inventory;
 use App\SalesInvoice;
 use App\SalesInvoiceDetail;
+
 
 class PointOfSalesApi extends Controller
 {
@@ -60,6 +62,16 @@ class PointOfSalesApi extends Controller
                     'int_price_id_fk'           => $product['int_price_id'],
                     'int_quantity'              => $product['int_quantity']
                 ));
+
+                // Update stock (decrease)
+                $inventory = Inventory::where('int_product_id_fk', '=', (int) $product['int_product_id'])
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+
+                $inventory->int_prev_value  = $inventory->int_current_value;
+                $inventory->int_current_value  -= (int) $product['int_quantity'];
+
+                $inventory->save();
             }
 
             DB::commit();
